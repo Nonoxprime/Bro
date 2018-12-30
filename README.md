@@ -1,6 +1,6 @@
 Divers Powershell Scripting
 
-Uopdate-1.15
+Update-1.15
 -- Update Script for Moonlander 2 From Futurbit.
 
 30/12/2018 - 1.1 - Add new file - Mini Mining
