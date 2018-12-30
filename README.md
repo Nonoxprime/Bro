@@ -2,6 +2,8 @@ Divers Powershell Scripting
 
 Update-1.15
 -- Update Script for Moonlander 2 From Futurbit.
+-- Driver for USB included
+-- BFGminer 5.4.2 Added
 
 30/12/2018 - 1.1 - Add new file - Mini Mining
 -- Now you can configure both software like CPUMINER (2.5.0) and CGminer (3.7.2)
