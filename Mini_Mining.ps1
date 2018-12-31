@@ -1,7 +1,7 @@
 ### By Nox Prime for Gameoverblog.fr ###
 ### Help me for a coffee/Vodka ... Both :) ?: 
-### LTC : 
-### BTC :
+### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
+### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
 ### Found News on 
 ## Site : https://Gameoverblog.fr
 ## GITHUB : https://github.com/Nonoxprime/Bro
@@ -14,11 +14,11 @@ Set-ExecutionPolicy Bypass -Scope Process
 Start-Sleep -s 2
 
 Write-Host " --- Mini Mining --- "
-Write-Host "Tool Version 1.1"
+Write-Host "Tool Version 1.1231.18"
 Write-Host ""
 Write-Host "News"  -ForegroundColor Green -BackgroundColor Black
-Write-Host "Now FuturBit Moonlander 2 - Scrypt compatible"
-
+Write-Host "Review Script"
+Write-Host ""
 ### Identification des variable ###
 $PoolMining = "stratum+tcp://litecoinpool.org:3333"
 $PoolUser = "Nox81.guest"
@@ -27,49 +27,70 @@ $PoolPass = "1"
 while ($Start -ne "y"){
 #### Check Files and Folder ####
 
+if ($fail -eq "n"){
+Write-Host "System"  -ForegroundColor Green -BackgroundColor Black
+} else {Write-Host "Check system"  -ForegroundColor red -BackgroundColor Black}
+
 ### Check CPUMINER###
 if (-not (Test-Path ".\CPUMINER2.5.0\minerd.exe")) {
     write-host "CPUMINER - System Check Failed : Missing CPUminer. Press '1' to download" -ForegroundColor red -BackgroundColor Black
-    }
+$Fail1 = "y"    
+}
 elseif (-not (Test-Path ".\_start_CPUMINER.bat")) {
-    write-host "CPUMINER - System Check Failed : Missing Conf file. Press 'C' to generate" -ForegroundColor red -BackgroundColor Black }
+    write-host "CPUMINER - System Check Failed : Missing Conf file. Press 'C' to generate" -ForegroundColor red -BackgroundColor Black 
+$Fail1 = "y"
+}
 else {write-host "CPUMINER - System Check done : ready to mine with your CPU" -ForegroundColor green -BackgroundColor Black
-        }
+$Fail1 = "n"
+}
 
 ### Check CGMINER ###
 if (-not (Test-Path ".\CGMINER3.7.2\cgminer.exe")) {
             write-host "CGMINER - System Check Failed : Missing CGminer. Press '2' to download" -ForegroundColor red -BackgroundColor Black
-            }
+$Fail2 = "y"    
+}
 elseif (-not (Test-Path ".\_start_CGMINER.bat")) {
-            write-host "CGMINER - System Check Failed : Missing Conf file. Press 'C' to generate" -ForegroundColor red -BackgroundColor Black }
+            write-host "CGMINER - System Check Failed : Missing Conf file. Press 'C' to generate" -ForegroundColor red -BackgroundColor Black 
+$Fail2 = "y"
+}
 else {write-host "CGMINER - System Check done : ready to mine with your GPU" -ForegroundColor green -BackgroundColor Black
+$Fail2 = "n"
 }
 
 ### Check BFG MoonLanders USB ###
 if (-not (Test-Path ".\BFGminer-5.4.2\bfgminer.exe")) {
     write-host "MoonLander 2 Scrypt - System Check Failed : Missing Drivers and BFGMiner. Press '3' to download" -ForegroundColor red -BackgroundColor Black
-    }
+$Fail3 = "y"
+}
 elseif (-not (Test-Path ".\_start_BFGMINER_Moonlander-Edition.bat")) {
-    write-host "MoonLander 2 Scrypt - System Check Failed : Missing Conf file. Press 'C' to generate" -ForegroundColor red -BackgroundColor Black }
+    write-host "MoonLander 2 Scrypt - System Check Failed : Missing Conf file. Press 'C' to generate" -ForegroundColor red -BackgroundColor Black 
+$Fail3 = "y"
+}
 else {write-host "MoonLander 2 Scrypt - - System Check done : ready to mine with your Moonlander" -ForegroundColor green -BackgroundColor Black
-        }
+$Fail3 = "n"
+}
+
+$Fail = $Fail1+$Fail2+$Fail3
+
+if ($Fail = "nnn") {$Fail = "n"}
+
 
 Write-Host ""
 write-host "Menu" -ForegroundColor Green -BackgroundColor Black
 write-host "Download" -ForegroundColor Yellow -BackgroundColor Black
-Write-Host [1] "- Download CPU Miner"
-Write-Host [2] "- DownLoad GPU Miner"
-Write-Host [3] "- DownLoad Drivers and Soft for USB Scrypt Moonlander 2"
+Write-Host [1] " - CPU Miner -- CPUminer "
+Write-Host [2] " - GPU Miner -- CGMiner "
+Write-Host [3] " - Moonlander 2 -- Drivers and Soft (BFGMiner) "
 Write-Host ""
 write-host "Config" -ForegroundColor Green -BackgroundColor Black
-Write-Host [P] - Pool Config 
-Write-Host [U] - User.worker Config 
-Write-Host [C] - Check config
+Write-Host [P] " - Pool Config "
+Write-Host [U] " - User.worker Config "
+Write-Host [G] " - Generate Config files "
 Write-Host ""
 write-host "Work" -ForegroundColor Green -BackgroundColor Black
-Write-Host [CS] - "Start CPU Mining (CPUminer)"
-Write-Host [CG] - "Start GPU Mining (CGminer)"
-Write-Host [CM] - "Start Moonlander 2 Mining (BFGminer)"
+Write-Host [CPU]" - Start CPU Mining (CPUminer)"
+Write-Host [GPU]" - Start GPU Mining (CGminer)"
+Write-Host [Moon]" - Start Moonlander 2 Mining (BFGminer)"
 Write-Host [Q] - "Quit" 
 Write-Host ""
 
@@ -85,11 +106,11 @@ switch ( $Choix )
 
     P { $Action = 'Conf_pool'}
 	U { $Action = 'Conf_User'}
-    C { $Action = 'Check'}
+    G { $Action = 'Generate'}
 
     CS { $Action = 'StartCPU'}
     CG { $Action = 'StartGPU'}
-    A { $Action = 'AllMiner'}
+    A { $Action = 'Moonlander'}
 	Q { $Action = 'Q'}
 }
 
@@ -149,8 +170,8 @@ if ($Action -eq "Conf_User") {
         clear-host
 }
 
-### Check and config file ###
-if ($Action -eq "Check") {
+### Generate config file ###
+if ($Action -eq "Generate") {
     Clear-Host
     Write-host "Configuration File" -ForegroundColor Green -BackgroundColor Black
     Write-host "Your Pool Mining set on : " -NoNewline 
@@ -178,31 +199,9 @@ while ($Job -ne "d"){
                         Write-Host [C] "- Write Conf for CPUMINER (CPU)"
                         Write-Host [G] "- Write Conf for CGMINER (GPU)"
                         Write-Host [M] "- Write Conf for Moonlander 2 (USB)" 
-                        Write-Host [v] "- verifying conf"
                         Write-Host [R] - return
                         Write-host ""
                         $Job = read-host "Your Choice "
-
-                        if ($Job -eq "v")   {
-                            Clear-Host
-                            Write-Host ""
-                            write-host "verifying Conf"           
-                            Write-Host ""
-                            if (-not (Test-Path ".\_start_CPUMINER.bat")) {
-                                Write-host "Waiting Configuration File" -ForegroundColor Green -BackgroundColor Black
-                                Write-host "Your Pool Mining set on : " -NoNewline 
-                                Write-host "$PoolMining" -ForegroundColor Green -BackgroundColor Black
-                                Write-host "Your User and Worker set on : " -NoNewline 
-                                Write-host "$PoolUser" -ForegroundColor Green -BackgroundColor Black
-                                Write-host "Your Pass for $PoolUser is set on :" -NoNewline 
-                                Write-host "$PoolPass" -ForegroundColor Green -BackgroundColor Black
-                                Write-host ""
-                                write-host "System Check Failed : Missing Conf file. Press 'w' to generate" -ForegroundColor red -BackgroundColor Black
-                                Write-Host ""
-                             }
-                          else {$check = Get-Content -Path ".\_start_.bat" | where { $_ -ne "$null" } | Select-Object -Index 0
-                          Write-Host $check}
-                        }
 
                     if ($Job -eq "C")   {
                         Write-Host ""
@@ -219,6 +218,8 @@ while ($Job -ne "d"){
                         $Confsetup= ".\_Start_CPUMINER.bat"
                         ADD-content -path $Confsetup -value ".\CPUminer2.5.0\minerd.exe --url=$Poolmining --userpass=$PoolUser$escape$PoolPass"
                         $writeCPU ="y"
+                        $writeGPU ="n"
+                        $Writemoon ="n"
                     }
 
 
@@ -235,7 +236,9 @@ while ($Job -ne "d"){
                         Write-Host ""
                         $Confsetup= ".\_Start_CGMINER.bat"
                         ADD-content -path $Confsetup -value ".\CGminer3.7.2\cgminer -o $Poolmining -u $PoolUser -p $PoolPass"
+                        $writeCPU ="n"
                         $writeGPU ="y"
+                        $Writemoon ="n"
                     }
 
                     if ($Job -eq "M")   {
@@ -251,11 +254,16 @@ while ($Job -ne "d"){
                         Write-Host ""
                         $Confsetup= ".\_Start_BFGMINER_Moonlander-Edition.bat"
                         ADD-content -path $Confsetup -value ".\BFGminer-5.4.2\bfgminer.exe --scrypt -o $Poolmining -u $PoolUser -p $PoolPass,d=128  -S MLD:all --set MLD:clock=600" 
-                        $writeGPU ="y"
+                        $writeCPU ="n"
+                        $writeGPU ="n"
+                        $Writemoon ="y"
                     }
 
                     if ($job -eq "r")   {clear-host
                                         $Start = "N"
+                                        $writeCPU ="n"
+                                        $writeGPU ="n"
+                                        $Writemoon ="n"
                                         $Job = "d"}
                     }
 
@@ -277,12 +285,11 @@ if ($Action -eq "StartGPU"){
     Write-Host ""
 }
 
-if ($Action -eq "AllMiner"){
+if ($Action -eq "MoonLander"){
     Clear-Host
-    write-host "Start Both Miner Job"
+    write-host "Start Moonlander Job"
     Write-Host ""
-    start-process -filepath .\_Start_CPUMINER.bat
-    start-process -filepath .\_Start_CGMINER.bat
+    start-process -filepath .\_start_BFGMINER_Moonlander-Edition.bat
     Write-Host ""
     exit
 }
