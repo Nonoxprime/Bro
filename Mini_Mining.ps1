@@ -83,14 +83,14 @@ Write-Host [2] " - GPU Miner -- CGMiner "
 Write-Host [3] " - Moonlander 2 -- Drivers and Soft (BFGMiner) "
 Write-Host ""
 write-host "Config" -ForegroundColor Green -BackgroundColor Black
-Write-Host [P] " - Pool Config "
-Write-Host [U] " - User.worker Config "
-Write-Host [G] " - Generate Config files "
+Write-Host [4] " - Pool Config "
+Write-Host [5] " - User.worker Config "
+Write-Host [6] " - Generate Config files "
 Write-Host ""
 write-host "Work" -ForegroundColor Green -BackgroundColor Black
-Write-Host [CPU]" - Start CPU Mining (CPUminer)"
-Write-Host [GPU]" - Start GPU Mining (CGminer)"
-Write-Host [Moon]" - Start Moonlander 2 Mining (BFGminer)"
+Write-Host [7]" - Start CPU Mining (CPUminer)"
+Write-Host [8]" - Start GPU Mining (CGminer)"
+Write-Host [9]" - Start Moonlander 2 Mining (BFGminer)"
 Write-Host [Q] - "Quit" 
 Write-Host ""
 
@@ -104,13 +104,13 @@ switch ( $Choix )
     2 { $Action = 'Download_CGminer'}
     3 { $Action = 'Download_Moonlander2'}
 
-    P { $Action = 'Conf_pool'}
-	U { $Action = 'Conf_User'}
-    G { $Action = 'Generate'}
+    4 { $Action = 'Conf_pool'}
+	5 { $Action = 'Conf_User'}
+    6 { $Action = 'Generate'}
 
-    CS { $Action = 'StartCPU'}
-    CG { $Action = 'StartGPU'}
-    A { $Action = 'Moonlander'}
+    7 { $Action = 'StartCPU'}
+    8 { $Action = 'StartGPU'}
+    9 { $Action = 'Moonlander'}
 	Q { $Action = 'Q'}
 }
 
@@ -196,14 +196,14 @@ while ($Job -ne "d"){
     }
     write-host ""
                         write-host "Menu" -ForegroundColor Green -BackgroundColor Black
-                        Write-Host [C] "- Write Conf for CPUMINER (CPU)"
-                        Write-Host [G] "- Write Conf for CGMINER (GPU)"
-                        Write-Host [M] "- Write Conf for Moonlander 2 (USB)" 
+                        Write-Host [1] "- Write Conf for CPUMINER (CPU)"
+                        Write-Host [2] "- Write Conf for CGMINER (GPU)"
+                        Write-Host [3] "- Write Conf for Moonlander 2 (USB)" 
                         Write-Host [R] - return
                         Write-host ""
                         $Job = read-host "Your Choice "
 
-                    if ($Job -eq "C")   {
+                    if ($Job -eq "1")   {
                         Write-Host ""
                         write-host "Writing _Start_CPUMINER.bat"           
                         Write-Host ""
@@ -223,7 +223,7 @@ while ($Job -ne "d"){
                     }
 
 
-                    if ($Job -eq "G")   {
+                    if ($Job -eq "2")   {
                         Write-Host ""
                         write-host "Writing _Start_CGMINER.bat"           
                         Write-Host ""
@@ -241,7 +241,7 @@ while ($Job -ne "d"){
                         $Writemoon ="n"
                     }
 
-                    if ($Job -eq "M")   {
+                    if ($Job -eq "3")   {
                         Write-Host ""
                         write-host "Writing _Start_BFGMINER_Moonlander-Edition.bat"           
                         Write-Host ""
