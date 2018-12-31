@@ -1,6 +1,12 @@
 Divers Powershell Scripting
 
-Update-1.15
+31/12/2018 - 1.1231.18 - Mini mining
+-- Code Review
+-- Remove some old Variable
+-- Add system Check for mining software (WIP)
+
+
+Update-1.11
 -- Update Script for Moonlander 2 From Futurbit.
 -- Driver for USB included
 -- BFGminer 5.4.2 Added
