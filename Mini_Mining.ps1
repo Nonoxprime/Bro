@@ -1,4 +1,4 @@
-### By Nox Prime for Gameoverblog.fr ###
+### By Nox Prime for Gameoverblog.fr ##
 ### Help me for a coffee/Vodka ... Both :) ?: 
 ### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
 ### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
