@@ -1,4 +1,4 @@
-### Write by Nox ###
+## Write by Nox ##
 Clear-Host
 Write-Host "This Script need to by run as admin"
 Set-ExecutionPolicy Bypass -Scope Process
