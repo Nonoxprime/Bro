@@ -1,5 +1,9 @@
 Divers Powershell Scripting
 
+05/01/2019 - 1.0105.19 - Mini Mining
+- Clean Code
+- Now you can adjust your moonlander clock.
+
 03/01/2019 - New File
 -- Add Scan_LocalHost.ps1
 --- Scan Localhost machine for Many information (Hostname, Video Card, Memory, IP, WAN, OS)
