@@ -1,4 +1,4 @@
-### By Nox Prime for Gameoverblog.fr ##
+### By Nox Prime for Gameoverblog.fr ###
 ### Help me for a coffee/Vodka ... Both :) ?: 
 ### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
 ### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
@@ -14,7 +14,7 @@ Set-ExecutionPolicy Bypass -Scope Process
 Start-Sleep -s 2
 
 Write-Host " --- Mini Mining --- "
-Write-Host "Tool Version 1.1231.18"
+Write-Host "Tool Version 1.0105.19"
 Write-Host ""
 Write-Host "News"  -ForegroundColor Green -BackgroundColor Black
 Write-Host "Review Script"
@@ -27,14 +27,12 @@ $PoolPass = "1"
 while ($Start -ne "y"){
 #### Check Files and Folder ####
 
-if ($fail -eq "n"){
-Write-Host "System"  -ForegroundColor Green -BackgroundColor Black
-} else {Write-Host "Check system"  -ForegroundColor red -BackgroundColor Black}
+Write-Host "Check system"  -ForegroundColor red -BackgroundColor Black
 
 ### Check CPUMINER###
 if (-not (Test-Path ".\CPUMINER2.5.0\minerd.exe")) {
     write-host "CPUMINER - System Check Failed : Missing CPUminer. Press '1' to download" -ForegroundColor red -BackgroundColor Black
-$Fail1 = "y"    
+$Fail1 = "y"
 }
 elseif (-not (Test-Path ".\_start_CPUMINER.bat")) {
     write-host "CPUMINER - System Check Failed : Missing Conf file. Press 'C' to generate" -ForegroundColor red -BackgroundColor Black 
@@ -66,7 +64,7 @@ elseif (-not (Test-Path ".\_start_BFGMINER_Moonlander-Edition.bat")) {
     write-host "MoonLander 2 Scrypt - System Check Failed : Missing Conf file. Press 'C' to generate" -ForegroundColor red -BackgroundColor Black 
 $Fail3 = "y"
 }
-else {write-host "MoonLander 2 Scrypt - - System Check done : ready to mine with your Moonlander" -ForegroundColor green -BackgroundColor Black
+else {write-host "MoonLander 2 Scrypt - System Check done : ready to mine with your Moonlander" -ForegroundColor green -BackgroundColor Black
 $Fail3 = "n"
 }
 
@@ -123,6 +121,10 @@ if ($Action -eq "Download_CPUminer") {
     Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/Cpuminer-2.5.0.zip" -OutFile ".\CPUminer2.5.0\Cpuminer.zip"
     expand-archive -path '.\CPUminer2.5.0\Cpuminer.zip' -destinationpath '.\CPUminer2.5.0\'
     Remove-Item .\CPUminer2.5.0\Cpuminer.zip
+    New-Item -Path ".\" -Name "_Start_CPUMINER.bat" -ItemType file
+    $escape = ":"
+    $Confsetup= ".\_Start_CPUMINER.bat"
+    ADD-content -path $Confsetup -value ".\CPUminer2.5.0\minerd.exe --url=$Poolmining --userpass=$PoolUser$escape$PoolPass"
 }
 
 if ($Action -eq "Download_CGminer") {
@@ -133,6 +135,9 @@ if ($Action -eq "Download_CGminer") {
     Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/cgminer-3.7.2.zip" -OutFile ".\CGminer3.7.2\Cgminer.zip"
     expand-archive -path '.\CGminer3.7.2\Cgminer.zip' -destinationpath '.\CGminer3.7.2\'
     Remove-Item .\CGminer3.7.2\Cgminer.zip
+    New-Item -Path ".\" -Name "_Start_CGMINER.bat" -ItemType file
+    $Confsetup= ".\_Start_CGMINER.bat"
+    ADD-content -path $Confsetup -value ".\CGminer3.7.2\cgminer -o $Poolmining -u $PoolUser -p $PoolPass"
 }
 
 
@@ -149,6 +154,9 @@ if ($Action -eq "Download_Moonlander2") {
     expand-archive -path '.\BFGminer-5.4.2\CP210x_Universal_Windows_Driver.zip' -destinationpath '.\BFGminer-5.4.2\'
     Remove-Item .\BFGminer-5.4.2\CP210x_Universal_Windows_Driver.zip
     start-process -filepath .\BFGminer-5.4.2\CP210xVCPInstaller_x64.exe
+    New-Item -Path ".\" -Name "_Start_BFGMINER_Moonlander-Edition.bat" -ItemType file
+    $Confsetup= ".\_Start_BFGMINER_Moonlander-Edition.bat"
+    ADD-content -path $Confsetup -value ".\BFGminer-5.4.2\bfgminer.exe --scrypt -o $Poolmining -u $PoolUser -p $PoolPass,d=128  -S MLD:all --set MLD:clock=660" 
 }
 
 
@@ -192,13 +200,13 @@ while ($Job -ne "d"){
                         write-host "CGMINER - Configugartion  Saved" -ForegroundColor red -BackgroundColor Black
                         }
     if ($Writemoon -eq "y") {
-                        Write-Host "Moonlander Scrypt USB - config Saved"
+                        Write-Host "Moonlander Scrypt USB - config Saved" -ForegroundColor red -BackgroundColor Black
     }
     write-host ""
                         write-host "Menu" -ForegroundColor Green -BackgroundColor Black
-                        Write-Host [1] "- Write Conf for CPUMINER (CPU)"
-                        Write-Host [2] "- Write Conf for CGMINER (GPU)"
-                        Write-Host [3] "- Write Conf for Moonlander 2 (USB)" 
+                        Write-Host [1] "- Write CPUMINER Configuration (CPU)"
+                        Write-Host [2] "- Write CGMINER Configuration (GPU)"
+                        Write-Host [3] "- Write Moonlander 2 Configuration (USB)" 
                         Write-Host [R] - return
                         Write-host ""
                         $Job = read-host "Your Choice "
@@ -210,7 +218,7 @@ while ($Job -ne "d"){
                         if (-not (Test-Path ".\_start_CPUMINER.bat")) {
                         New-Item -Path ".\" -Name "_Start_CPUMINER.bat" -ItemType file
                         } else {
-                            del _start_CPUMINER.bat
+                            remove-item .\_start_CPUMINER.bat
                             New-Item -Path ".\" -Name "_Start_CPUMINER.bat" -ItemType file
                         }                         
                         Write-Host ""
@@ -230,7 +238,7 @@ while ($Job -ne "d"){
                         if (-not (Test-Path ".\_start_CGMINER.bat")) {
                         New-Item -Path ".\" -Name "_Start_CGMINER.bat" -ItemType file
                         } else {
-                            del _Start_CGMINER.bat
+                            remove-item .\_Start_CGMINER.bat
                             New-Item -Path ".\" -Name "_Start_CGMINER.bat" -ItemType file
                         }                         
                         Write-Host ""
@@ -245,15 +253,32 @@ while ($Job -ne "d"){
                         Write-Host ""
                         write-host "Writing _Start_BFGMINER_Moonlander-Edition.bat"           
                         Write-Host ""
+                        
+                        while ($pass -ne "ok") {
+                            if ($pass -eq "no"){write-host "Warning Wrong value please choose a num between 600 and 660"  -ForegroundColor red -BackgroundColor Black}
+                            write-host ""
+                            $OC = read-host "MoonLander 2 Clock [600-660] "
+                            if ($OC -ge 600 -and $OC -le 660){
+                                write-host "You have set your Moonlander Clock at " -NoNewline
+                                write-host "$OC" -ForegroundColor green -BackgroundColor Black
+                                $Pass = "ok"
+                            }
+                            else {
+                                Clear-Host
+                                $pass = "no"
+
+                                }
+                            }
+
                         if (-not (Test-Path ".\_Start_BFGMINER_Moonlander-Edition.bat")) {
                         New-Item -Path ".\" -Name "_Start_BFGMINER_Moonlander-Edition.bat" -ItemType file
                         } else {
-                            del _Start_CGMINER.bat
+                            remove-item .\_Start_BFGMINER_Moonlander-Edition.bat
                             New-Item -Path ".\" -Name "_Start_BFGMINER_Moonlander-Edition.bat" -ItemType file
                         }                         
                         Write-Host ""
                         $Confsetup= ".\_Start_BFGMINER_Moonlander-Edition.bat"
-                        ADD-content -path $Confsetup -value ".\BFGminer-5.4.2\bfgminer.exe --scrypt -o $Poolmining -u $PoolUser -p $PoolPass,d=128  -S MLD:all --set MLD:clock=600" 
+                        ADD-content -path $Confsetup -value ".\BFGminer-5.4.2\bfgminer.exe --scrypt -o $Poolmining -u $PoolUser -p $PoolPass,d=128  -S MLD:all --set MLD:clock=$OC" 
                         $writeCPU ="n"
                         $writeGPU ="n"
                         $Writemoon ="y"
