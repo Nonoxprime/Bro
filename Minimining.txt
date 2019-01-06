@@ -1,0 +1,43 @@
+Explication
+
+- Afin de pouvoir exécutez le script il vous faudra autoriser l'exécution de script par powershell.
+-- exécutez cette commande : Set-ExecutionPolicy Bypass -Scope Process
+
+- Validez par T puis entrée
+
+voilà vous êtes prêt pour lancer le script.
+- exécutez cette commande : .\Mini_Mining.ps1
+
+Au lancement du script vous avez ceci
+https://gameoverblog.fr/wp-content/uploads/2019/01/Annotation-2019-01-06-095030.jpg
+
+Le system Check vous permet de voir les soft que vous avez installé.
+Par defaut c'est tout a Fail car vous n'avez encore rien fait.
+
+1 : Vous permettra de télécharger CPUminer
+-- Miner avec votre CPU ce n’est pas la solution la plus rapide, mais cela a le mérite d'exister
+
+2 : Vous permettra de télécharger CGMINER
+-- Miner avec votre GPU bien plus performant car il utilisera la puissance de votre carte vidéo pour miner
+
+3 : Téléchargera les drivers et la version de BFGminer spécifique pour les clé USB Moonlander 2
+-- Miner avec une clé USB dédiée au LTC (Moonlander 2)
+
+Une fois effectuer vous pouvez d'emblée faire un test de minage.
+Pour se faire sélectionner dans le menu votre choix (7, 8 ou 9)
+Cela va exécutez un fichier de commande qui lancera le minage.
+
+Vous pouvez ensuite configurer votre pool de minage
+
+4 - Vous permet justement de configurer votre pool de minage par exemple : stratum+tcp://litecoinpool.org:3333
+5 - Vous permet de régler votre compte.Worker par exemple : Nox81.Guest
+-- suite à cela on vous demandera un mot de passe, par défaut c'est ce que vous voulez, mais parfois des pool nécessite un mots de passe bien identifier.
+
+6 - vous permet d'enregistrer cette configuration.
+
+https://gameoverblog.fr/wp-content/uploads/2019/01/Annotation-2019-01-06-100344.jpg
+
+Sélectionnez le soft qui utilisera la configuration que vous venez de faire au préalable.
+
+Une fois ok, faites R pour revenir au menu précèdent. Vous pouvez ensuite relancer les mineurs à l'aide de 7,8 ou 9.
+
