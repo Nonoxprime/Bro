@@ -35,7 +35,7 @@ Vous pouvez ensuite configurer votre pool de minage
 
 6 - vous permet d'enregistrer cette configuration.
 
-https://gameoverblog.fr/wp-content/uploads/2019/01/Annotation-2019-01-06-100344.jpg
+<img ="https://gameoverblog.fr/wp-content/uploads/2019/01/Annotation-2019-01-06-100344.jpg">
 
 Sélectionnez le soft qui utilisera la configuration que vous venez de faire au préalable.
 
