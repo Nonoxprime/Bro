@@ -39,5 +39,5 @@ https://gameoverblog.fr/wp-content/uploads/2019/01/Annotation-2019-01-06-100344.
 
 Sélectionnez le soft qui utilisera la configuration que vous venez de faire au préalable.
 
-Une fois ok, faites R pour revenir au menu précèdent. Vous pouvez ensuite relancer les mineurs à l'aide de 7,8 ou 9.
+Une fois ok, faites R pour revenir au menu précèdent. Vous pouvez ensuite relancer les mineurs à l'aide de 7,8 ou 9
 
