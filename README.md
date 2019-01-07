@@ -1,5 +1,9 @@
 Divers Powershell Scripting
 
+07/01/2019 - 1.0105.19
+- Code review
+- Config File Added
+
 05/01/2019 - 1.0105.19 - Mini Mining
 - Clean Code
 - Now you can adjust your moonlander clock.
