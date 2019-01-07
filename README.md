@@ -1,3 +1,9 @@
+Mining.Exe is a compilation of Mini_Mining.ps1
+Mini_Mining.Ps1 is source
+
+Just need to run exe
+If request select T + enter to execute this Script
+
 Divers Powershell Scripting
 
 07/01/2019 - 1.0105.19
