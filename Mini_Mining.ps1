@@ -7,12 +7,12 @@
 ## Site : https://Gameoverblog.fr
 ## GITHUB : https://github.com/Nonoxprime/Bro
 ### Thanks for your help, enjoy this script
-
-Write-Host "This Script need to by run as admin"
+write-host ""
+Write-Host "This Script need to by run as admin" -ForegroundColor red -BackgroundColor Black
+write-host ""
 Set-ExecutionPolicy Bypass -Scope Process
 
-### Identification des variable ###
-
+# Default Config File #
 if (-not (Test-Path ".\Userconfig.conf")) {
     New-Item -Path ".\" -Name "Userconfig.conf" -ItemType file -force
     ADD-Content -Path ".\Userconfig.conf" -Value "[Config File]"
@@ -26,6 +26,7 @@ if (-not (Test-Path ".\Userconfig.conf")) {
     write-host ""
 }
 
+### Identification des variable ###
 $Version = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 1
 $PoolMining = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 3
 $PoolUser = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 5
@@ -84,9 +85,6 @@ if ($Fail = "nn") {$Fail = "n"}
 Write-Host ""
 Write-Host " --- Mini Mining --- "
 Write-Host "Tool Version 1.0107.19"
-Write-Host ""
-Write-Host "News"  -ForegroundColor Green -BackgroundColor Black
-Write-Host "Exe Convert"
 Write-Host ""
 write-host "Menu" -ForegroundColor Green -BackgroundColor Black
 write-host "Download" -ForegroundColor Yellow -BackgroundColor Black
@@ -185,34 +183,34 @@ if ($Action -eq "Download_Moonlander2") {
 if ($Action -eq "Configuration") {
 
 ### Config Pool Acces ###
-    write-host ""
-    $Pool = Read-Host "Mining Pool Address - (Default: stratum+tcp://litecoinpool.org:3333) "
-    if ($Pool -eq $null) {$Pool = "stratum+tcp://litecoinpool.org:3333"}
-    $PoolMining = $PoolMining.Replace("$PoolMining", "$Pool")
+write-host ""
+$Pool = Read-Host "Mining Pool Address ) "
+if ($Pool -eq $null) {$Pool = "stratum+tcp://litecoinpool.org:3333"}
+$PoolMining = $PoolMining.Replace("$PoolMining", "$Pool")
 
 ### Config USER Acces ###
-    write-host ""
-    $PUser = Read-Host "Pool User Like User.worker - (Default: Nox81.guest) "
-    if ($PUser -eq $null) {$PUser = "Nox81.guest"}
-    $PoolUser = $PoolUser.Replace("$PoolUser", "$PUser")
+write-host ""
+$PUser = Read-Host "Pool User Like User.worker "
+if ($PUser -eq $null) {$PUser = "Nox81.guest"}
+$PoolUser = $PoolUser.Replace("$PoolUser", "$PUser")
 
 ### Config Pool Pass ###
-    write-host ""
-    $PPass = Read-Host "Worker Password (Default: What you want) "
-    if ($PPass -eq $null) {$PPass = "1"}
-    $PoolPass = $PoolPass.Replace("$PoolPass", "$PPass")
-    
-    remove-item ".\Userconfig.conf"
-    New-Item -Path ".\" -Name "Userconfig.conf" -ItemType file -Force
-    ADD-Content -Path ".\Userconfig.conf" -Value "[Config File]"
-    ADD-Content -Path ".\Userconfig.conf" -Value $Version
-    ADD-Content -Path ".\Userconfig.conf" -Value "[Mining Pool]"
-    ADD-Content -Path ".\Userconfig.conf" -Value $PoolMining
-    ADD-Content -Path ".\Userconfig.conf" -Value "[User.worker]"
-    ADD-Content -Path ".\Userconfig.conf" -Value $PoolUser
-    ADD-Content -Path ".\Userconfig.conf" -Value "[WorkerPassword]"
-    ADD-Content -Path ".\Userconfig.conf" -Value $PoolPass
-    write-host ""
+write-host ""
+$PPass = Read-Host "Worker Password "
+if ($PPass -eq $null) {$PPass = '1'}
+$PoolPass = $PoolPass.Replace("$PoolPass", "$PPass")
+
+remove-item ".\Userconfig.conf"
+New-Item -Path ".\" -Name "Userconfig.conf" -ItemType file -Force
+ADD-Content -Path ".\Userconfig.conf" -Value "[Config File]"
+ADD-Content -Path ".\Userconfig.conf" -Value $Version
+ADD-Content -Path ".\Userconfig.conf" -Value "[Mining Pool]"
+ADD-Content -Path ".\Userconfig.conf" -Value $PoolMining
+ADD-Content -Path ".\Userconfig.conf" -Value "[User.worker]"
+ADD-Content -Path ".\Userconfig.conf" -Value $PoolUser
+ADD-Content -Path ".\Userconfig.conf" -Value "[WorkerPassword]"
+ADD-Content -Path ".\Userconfig.conf" -Value $PoolPass
+write-host ""
 }
 
 ### Generate config file ###
