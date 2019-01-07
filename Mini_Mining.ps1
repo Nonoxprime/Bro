@@ -1,4 +1,5 @@
 ﻿### By Nox Prime for Gameoverblog.fr ###
+### 1.0107.19 ###
 ### Help me for a coffee/Vodka ... Both :) ?: 
 ### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
 ### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
@@ -11,6 +12,20 @@ Write-Host "This Script need to by run as admin"
 Set-ExecutionPolicy Bypass -Scope Process
 
 ### Identification des variable ###
+
+if (-not (Test-Path ".\Userconfig.conf")) {
+    New-Item -Path ".\" -Name "Userconfig.conf" -ItemType file -force
+    ADD-Content -Path ".\Userconfig.conf" -Value "[Config File]"
+    ADD-Content -Path ".\Userconfig.conf" -Value "1.0107.19"
+    ADD-Content -Path ".\Userconfig.conf" -Value "[Mining Pool]"
+    ADD-Content -Path ".\Userconfig.conf" -Value "stratum+tcp://litecoinpool.org:3333"
+    ADD-Content -Path ".\Userconfig.conf" -Value "[User.worker]"
+    ADD-Content -Path ".\Userconfig.conf" -Value "Nox81.guest"
+    ADD-Content -Path ".\Userconfig.conf" -Value "[WorkerPassword]"
+    ADD-Content -Path ".\Userconfig.conf" -Value "1"
+    write-host ""
+}
+
 $Version = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 1
 $PoolMining = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 3
 $PoolUser = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 5
@@ -188,7 +203,7 @@ if ($Action -eq "Configuration") {
     $PoolPass = $PoolPass.Replace("$PoolPass", "$PPass")
     
     remove-item ".\Userconfig.conf"
-    New-Item -Path ".\" -Name "Userconfig.conf" -ItemType file
+    New-Item -Path ".\" -Name "Userconfig.conf" -ItemType file -Force
     ADD-Content -Path ".\Userconfig.conf" -Value "[Config File]"
     ADD-Content -Path ".\Userconfig.conf" -Value $Version
     ADD-Content -Path ".\Userconfig.conf" -Value "[Mining Pool]"
