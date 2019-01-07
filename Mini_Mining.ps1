@@ -1,4 +1,4 @@
-### By Nox Prime for Gameoverblog.fr ###
+﻿### By Nox Prime for Gameoverblog.fr ###
 ### Help me for a coffee/Vodka ... Both :) ?: 
 ### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
 ### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
@@ -7,27 +7,21 @@
 ## GITHUB : https://github.com/Nonoxprime/Bro
 ### Thanks for your help, enjoy this script
 
-Clear-Host
-
 Write-Host "This Script need to by run as admin"
 Set-ExecutionPolicy Bypass -Scope Process
-Start-Sleep -s 2
 
-Write-Host " --- Mini Mining --- "
-Write-Host "Tool Version 1.0105.19"
-Write-Host ""
-Write-Host "News"  -ForegroundColor Green -BackgroundColor Black
-Write-Host "Review Script"
-Write-Host ""
 ### Identification des variable ###
-$PoolMining = "stratum+tcp://litecoinpool.org:3333"
-$PoolUser = "Nox81.guest"
-$PoolPass = "1"
+$Version = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 1
+$PoolMining = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 3
+$PoolUser = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 5
+$PoolPass = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 7
 
 while ($Start -ne "y"){
-#### Check Files and Folder ####
 
-Write-Host "Check system"  -ForegroundColor red -BackgroundColor Black
+#### Check Files and Folder ####
+clear-Host
+if ($fail -eq "n"){Write-Host "Check system"  -ForegroundColor green -BackgroundColor Black}
+else {Write-Host "Check system"  -ForegroundColor red -BackgroundColor Black}
 
 ### Check CPUMINER###
 if (-not (Test-Path ".\CPUMINER2.5.0\minerd.exe")) {
@@ -68,11 +62,16 @@ else {write-host "MoonLander 2 Scrypt - System Check done : ready to mine with y
 $Fail3 = "n"
 }
 
-$Fail = $Fail1+$Fail2+$Fail3
+$Fail = $Fail1+$Fail2
 
-if ($Fail = "nnn") {$Fail = "n"}
+if ($Fail = "nn") {$Fail = "n"}
 
-
+Write-Host ""
+Write-Host " --- Mini Mining --- "
+Write-Host "Tool Version 1.0107.19"
+Write-Host ""
+Write-Host "News"  -ForegroundColor Green -BackgroundColor Black
+Write-Host "Exe Convert"
 Write-Host ""
 write-host "Menu" -ForegroundColor Green -BackgroundColor Black
 write-host "Download" -ForegroundColor Yellow -BackgroundColor Black
@@ -81,9 +80,8 @@ Write-Host [2] " - GPU Miner -- CGMiner "
 Write-Host [3] " - Moonlander 2 -- Drivers and Soft (BFGMiner) "
 Write-Host ""
 write-host "Config" -ForegroundColor Green -BackgroundColor Black
-Write-Host [4] " - Pool Config "
-Write-Host [5] " - User.worker Config "
-Write-Host [6] " - Generate Config files "
+Write-Host [4] " - Configuration "
+Write-Host [5] " - Generate Config files "
 Write-Host ""
 write-host "Work" -ForegroundColor Green -BackgroundColor Black
 Write-Host [7]" - Start CPU Mining (CPUminer)"
@@ -102,19 +100,18 @@ switch ( $Choix )
     2 { $Action = 'Download_CGminer'}
     3 { $Action = 'Download_Moonlander2'}
 
-    4 { $Action = 'Conf_pool'}
-	5 { $Action = 'Conf_User'}
-    6 { $Action = 'Generate'}
+    4 { $Action = 'Configuration'}
+    5 { $Action = 'Generate'}
 
-    7 { $Action = 'StartCPU'}
-    8 { $Action = 'StartGPU'}
-    9 { $Action = 'Moonlander'}
+    6 { $Action = 'StartCPU'}
+    7 { $Action = 'StartGPU'}
+    8 { $Action = 'Moonlander'}
 	Q { $Action = 'Q'}
 }
 
 ### Download Files
 if ($Action -eq "Download_CPUminer") {
-    Clear-Host
+    write-host ""
     if (-not (Test-Path ".\CPUminer2.5.0")) {
         New-Item -Path ".\" -Name "CPUminer2.5.0" -ItemType directory -force
         }
@@ -125,10 +122,14 @@ if ($Action -eq "Download_CPUminer") {
     $escape = ":"
     $Confsetup= ".\_Start_CPUMINER.bat"
     ADD-content -path $Confsetup -value ".\CPUminer2.5.0\minerd.exe --url=$Poolmining --userpass=$PoolUser$escape$PoolPass"
+    Write-host "Reloading Mini_Mining"
+    start-sleep -s 2
+    start-process .\Mini_Mining.exe
+    exit
 }
 
 if ($Action -eq "Download_CGminer") {
-    Clear-Host
+    write-host ""
     if (-not (Test-Path ".\CGminer3.7.2")) {
         New-Item -Path ".\" -Name "CGminer3.7.2" -ItemType directory -force
         }
@@ -138,11 +139,14 @@ if ($Action -eq "Download_CGminer") {
     New-Item -Path ".\" -Name "_Start_CGMINER.bat" -ItemType file
     $Confsetup= ".\_Start_CGMINER.bat"
     ADD-content -path $Confsetup -value ".\CGminer3.7.2\cgminer -o $Poolmining -u $PoolUser -p $PoolPass"
+    Write-host "Reloading Mini_Mining"
+    start-sleep -s 2
+    start-process .\Mini_Mining.exe
+    exit
 }
 
-
 if ($Action -eq "Download_Moonlander2") {
-    Clear-Host
+    write-host ""
     if (-not (Test-Path ".\BFGminer-5.4.2")) {
         New-Item -Path ".\" -Name "BFGminer-5.4.2" -ItemType directory -force
         }
@@ -157,30 +161,49 @@ if ($Action -eq "Download_Moonlander2") {
     New-Item -Path ".\" -Name "_Start_BFGMINER_Moonlander-Edition.bat" -ItemType file
     $Confsetup= ".\_Start_BFGMINER_Moonlander-Edition.bat"
     ADD-content -path $Confsetup -value ".\BFGminer-5.4.2\bfgminer.exe --scrypt -o $Poolmining -u $PoolUser -p $PoolPass,d=128  -S MLD:all --set MLD:clock=660" 
+    Write-host "Reloading Mini_Mining"
+    start-sleep -s 2
+    start-process .\Mini_Mining.exe
+    exit
 }
 
+if ($Action -eq "Configuration") {
 
 ### Config Pool Acces ###
-if ($Action -eq "Conf_Pool") {
-    Clear-Host 
-    $PoolMining = Read-Host "Mining Pool Addres - (Default: stratum+tcp://litecoinpool.org:3333) "
-        if ($PoolMining -eq $null) {$PoolMining = "stratum+tcp://litecoinpool.org:3333"}
-        clear-host
-}
+    write-host ""
+    $Pool = Read-Host "Mining Pool Address - (Default: stratum+tcp://litecoinpool.org:3333) "
+    if ($Pool -eq $null) {$Pool = "stratum+tcp://litecoinpool.org:3333"}
+    $PoolMining = $PoolMining.Replace("$PoolMining", "$Pool")
 
 ### Config USER Acces ###
-if ($Action -eq "Conf_User") {
-    Clear-Host
-    $PoolUser = Read-Host "Pool User Like User.worker - (Default: Nox81.guest) "
-        if ($PoolUser -eq $null) {$PoolUser = "Nox81.guest"}
-    $PoolPass = Read-Host "Worker Password (Default: What you want) "
-        if ($PoolPass -eq $null) {$PoolPass = "1"}
-        clear-host
+    write-host ""
+    $PUser = Read-Host "Pool User Like User.worker - (Default: Nox81.guest) "
+    if ($PUser -eq $null) {$PUser = "Nox81.guest"}
+    $PoolUser = $PoolUser.Replace("$PoolUser", "$PUser")
+
+### Config Pool Pass ###
+    write-host ""
+    $PPass = Read-Host "Worker Password (Default: What you want) "
+    if ($PPass -eq $null) {$PPass = "1"}
+    $PoolPass = $PoolPass.Replace("$PoolPass", "$PPass")
+    
+    remove-item ".\Userconfig.conf"
+    New-Item -Path ".\" -Name "Userconfig.conf" -ItemType file
+    ADD-Content -Path ".\Userconfig.conf" -Value "[Config File]"
+    ADD-Content -Path ".\Userconfig.conf" -Value $Version
+    ADD-Content -Path ".\Userconfig.conf" -Value "[Mining Pool]"
+    ADD-Content -Path ".\Userconfig.conf" -Value $PoolMining
+    ADD-Content -Path ".\Userconfig.conf" -Value "[User.worker]"
+    ADD-Content -Path ".\Userconfig.conf" -Value $PoolUser
+    ADD-Content -Path ".\Userconfig.conf" -Value "[WorkerPassword]"
+    ADD-Content -Path ".\Userconfig.conf" -Value $PoolPass
+    write-host ""
 }
 
 ### Generate config file ###
 if ($Action -eq "Generate") {
-    Clear-Host
+    
+    write-host ""
     Write-host "Configuration File" -ForegroundColor Green -BackgroundColor Black
     Write-host "Your Pool Mining set on : " -NoNewline 
     Write-host "$PoolMining" -ForegroundColor Green -BackgroundColor Black
@@ -295,7 +318,6 @@ while ($Job -ne "d"){
                     }
 
 if ($Action -eq "StartCPU"){
-    Clear-Host
     write-host "Start CPUminer Job"
     Write-Host ""
     start-process -filepath .\_Start_CPUMINER.bat
@@ -303,7 +325,6 @@ if ($Action -eq "StartCPU"){
 }
 
 if ($Action -eq "StartGPU"){
-    Clear-Host
     write-host "Start CGminer Job"
     Write-Host ""
     start-process -filepath .\_Start_CGMINER.bat
@@ -311,7 +332,6 @@ if ($Action -eq "StartGPU"){
 }
 
 if ($Action -eq "MoonLander"){
-    Clear-Host
     write-host "Start Moonlander Job"
     Write-Host ""
     start-process -filepath .\_start_BFGMINER_Moonlander-Edition.bat
