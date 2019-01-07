@@ -7,12 +7,12 @@
 ## Site : https://Gameoverblog.fr
 ## GITHUB : https://github.com/Nonoxprime/Bro
 ### Thanks for your help, enjoy this script
-write-host ""
-Write-Host "This Script need to by run as admin" -ForegroundColor red -BackgroundColor Black
-write-host ""
+
+Write-Host "This Script need to by run as admin"
 Set-ExecutionPolicy Bypass -Scope Process
 
-# Default Config File #
+### Identification des variable ###
+
 if (-not (Test-Path ".\Userconfig.conf")) {
     New-Item -Path ".\" -Name "Userconfig.conf" -ItemType file -force
     ADD-Content -Path ".\Userconfig.conf" -Value "[Config File]"
@@ -26,7 +26,6 @@ if (-not (Test-Path ".\Userconfig.conf")) {
     write-host ""
 }
 
-### Identification des variable ###
 $Version = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 1
 $PoolMining = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 3
 $PoolUser = Get-Content -Path .\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 5
@@ -86,6 +85,9 @@ Write-Host ""
 Write-Host " --- Mini Mining --- "
 Write-Host "Tool Version 1.0107.19"
 Write-Host ""
+Write-Host "News"  -ForegroundColor Green -BackgroundColor Black
+Write-Host "Exe Convert"
+Write-Host ""
 write-host "Menu" -ForegroundColor Green -BackgroundColor Black
 write-host "Download" -ForegroundColor Yellow -BackgroundColor Black
 Write-Host [1] " - CPU Miner -- CPUminer "
@@ -97,9 +99,9 @@ Write-Host [4] " - Configuration "
 Write-Host [5] " - Generate Config files "
 Write-Host ""
 write-host "Work" -ForegroundColor Green -BackgroundColor Black
-Write-Host [7]" - Start CPU Mining (CPUminer)"
-Write-Host [8]" - Start GPU Mining (CGminer)"
-Write-Host [9]" - Start Moonlander 2 Mining (BFGminer)"
+Write-Host [6]" - Start CPU Mining (CPUminer)"
+Write-Host [7]" - Start GPU Mining (CGminer)"
+Write-Host [8]" - Start Moonlander 2 Mining (BFGminer)"
 Write-Host [Q] - "Quit" 
 Write-Host ""
 
@@ -135,10 +137,6 @@ if ($Action -eq "Download_CPUminer") {
     $escape = ":"
     $Confsetup= ".\_Start_CPUMINER.bat"
     ADD-content -path $Confsetup -value ".\CPUminer2.5.0\minerd.exe --url=$Poolmining --userpass=$PoolUser$escape$PoolPass"
-    Write-host "Reloading Mini_Mining"
-    start-sleep -s 2
-    start-process .\Mini_Mining.exe
-    exit
 }
 
 if ($Action -eq "Download_CGminer") {
@@ -152,10 +150,6 @@ if ($Action -eq "Download_CGminer") {
     New-Item -Path ".\" -Name "_Start_CGMINER.bat" -ItemType file
     $Confsetup= ".\_Start_CGMINER.bat"
     ADD-content -path $Confsetup -value ".\CGminer3.7.2\cgminer -o $Poolmining -u $PoolUser -p $PoolPass"
-    Write-host "Reloading Mini_Mining"
-    start-sleep -s 2
-    start-process .\Mini_Mining.exe
-    exit
 }
 
 if ($Action -eq "Download_Moonlander2") {
@@ -174,43 +168,39 @@ if ($Action -eq "Download_Moonlander2") {
     New-Item -Path ".\" -Name "_Start_BFGMINER_Moonlander-Edition.bat" -ItemType file
     $Confsetup= ".\_Start_BFGMINER_Moonlander-Edition.bat"
     ADD-content -path $Confsetup -value ".\BFGminer-5.4.2\bfgminer.exe --scrypt -o $Poolmining -u $PoolUser -p $PoolPass,d=128  -S MLD:all --set MLD:clock=660" 
-    Write-host "Reloading Mini_Mining"
-    start-sleep -s 2
-    start-process .\Mini_Mining.exe
-    exit
 }
 
 if ($Action -eq "Configuration") {
 
 ### Config Pool Acces ###
-write-host ""
-$Pool = Read-Host "Mining Pool Address ) "
-if ($Pool -eq $null) {$Pool = "stratum+tcp://litecoinpool.org:3333"}
-$PoolMining = $PoolMining.Replace("$PoolMining", "$Pool")
+    write-host ""
+    $Pool = Read-Host "Mining Pool Address "
+    if ($Pool -eq $null) {$Pool = "stratum+tcp://litecoinpool.org:3333"}
+    $PoolMining = $PoolMining.Replace("$PoolMining", "$Pool")
 
 ### Config USER Acces ###
-write-host ""
-$PUser = Read-Host "Pool User Like User.worker "
-if ($PUser -eq $null) {$PUser = "Nox81.guest"}
-$PoolUser = $PoolUser.Replace("$PoolUser", "$PUser")
+    write-host ""
+    $PUser = Read-Host "Pool User Like User.worker "
+    if ($PUser -eq $null) {$PUser = "Nox81.guest"}
+    $PoolUser = $PoolUser.Replace("$PoolUser", "$PUser")
 
 ### Config Pool Pass ###
-write-host ""
-$PPass = Read-Host "Worker Password "
-if ($PPass -eq $null) {$PPass = '1'}
-$PoolPass = $PoolPass.Replace("$PoolPass", "$PPass")
-
-remove-item ".\Userconfig.conf"
-New-Item -Path ".\" -Name "Userconfig.conf" -ItemType file -Force
-ADD-Content -Path ".\Userconfig.conf" -Value "[Config File]"
-ADD-Content -Path ".\Userconfig.conf" -Value $Version
-ADD-Content -Path ".\Userconfig.conf" -Value "[Mining Pool]"
-ADD-Content -Path ".\Userconfig.conf" -Value $PoolMining
-ADD-Content -Path ".\Userconfig.conf" -Value "[User.worker]"
-ADD-Content -Path ".\Userconfig.conf" -Value $PoolUser
-ADD-Content -Path ".\Userconfig.conf" -Value "[WorkerPassword]"
-ADD-Content -Path ".\Userconfig.conf" -Value $PoolPass
-write-host ""
+    write-host ""
+    $PPass = Read-Host "Worker Password "
+    if ($PPass -eq $null) {$PPass = "1"}
+    $PoolPass = $PoolPass.Replace("$PoolPass", "$PPass")
+    
+    remove-item ".\Userconfig.conf"
+    New-Item -Path ".\" -Name "Userconfig.conf" -ItemType file -Force
+    ADD-Content -Path ".\Userconfig.conf" -Value "[Config File]"
+    ADD-Content -Path ".\Userconfig.conf" -Value $Version
+    ADD-Content -Path ".\Userconfig.conf" -Value "[Mining Pool]"
+    ADD-Content -Path ".\Userconfig.conf" -Value $PoolMining
+    ADD-Content -Path ".\Userconfig.conf" -Value "[User.worker]"
+    ADD-Content -Path ".\Userconfig.conf" -Value $PoolUser
+    ADD-Content -Path ".\Userconfig.conf" -Value "[WorkerPassword]"
+    ADD-Content -Path ".\Userconfig.conf" -Value $PoolPass
+    write-host ""
 }
 
 ### Generate config file ###
@@ -334,22 +324,18 @@ if ($Action -eq "StartCPU"){
     write-host "Start CPUminer Job"
     Write-Host ""
     start-process -filepath .\_Start_CPUMINER.bat
-    Write-Host ""
 }
 
 if ($Action -eq "StartGPU"){
     write-host "Start CGminer Job"
     Write-Host ""
     start-process -filepath .\_Start_CGMINER.bat
-    Write-Host ""
 }
 
 if ($Action -eq "MoonLander"){
     write-host "Start Moonlander Job"
     Write-Host ""
     start-process -filepath .\_start_BFGMINER_Moonlander-Edition.bat
-    Write-Host ""
-    exit
 }
 
 if ($Action -eq "Q"){Exit}
