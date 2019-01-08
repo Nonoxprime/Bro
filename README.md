@@ -47,7 +47,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:list -->
-<ul><li>Just need to run exe</li><li>If request select T + enter to execute this Script</li></ul>
+<ul><li>Just need to run exe</li><li>If request select A (or T for French) + enter to execute this Script</li></ul>
 <!-- /wp:list -->
 
 <!-- wp:heading {"level":4} -->
