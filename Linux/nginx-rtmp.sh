@@ -117,6 +117,6 @@ H2
 ip=`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
 systemctl start nginx
 
-echo -e "Thuc hien nhu sau:
+echo -e "
 - Push RTMP: rtmp://$ip/live/<KEY>
 - Play HLS: http://$ip/hls/<KEY>/index.m3u8"
