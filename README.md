@@ -1,11 +1,27 @@
-Mining.Exe is a compilation of Mini_Mining.ps1
-Mini_Mining.Ps1 is source
+### By Nox Prime for Gameoverblog.fr ###
+### Help me for a coffee/Vodka ... Both :) ?: 
+### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
+### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
+### Found News on 
+## Site : https://Gameoverblog.fr
+## GITHUB : https://github.com/Nonoxprime/Bro
+### Thanks for your help, enjoy
 
-Just need to run exe
-If request select T + enter to execute this Script
+Applicaiton
+Mining.Exe
+    - Just need to run exe
+    - If request select T + enter to execute this Script
 
-Divers Powershell Scripting
+Powershell
+    - Some Stuff in Powershell
+    - Computer Scan for many information
+    - How To Make a question form
+    - Make a progress bar
 
+Linux
+    - How to Install a Stream Station
+    - Just need to DL the .sh and Run it with SU Right
+   
 07/01/2019 - 1.0105.19
 - Code review
 - Config File Added
