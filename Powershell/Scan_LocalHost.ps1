@@ -2,8 +2,6 @@
 Clear-Host
 Write-Host "This Script need to be run as admin"
 Set-ExecutionPolicy Bypass -Scope Process
-Start-Sleep -s 1
-
 
 write-host "MENU" -ForegroundColor Green -BackgroundColor Black
 Write-Host [1] - Scan Localhost
@@ -39,9 +37,9 @@ $gpu = Get-WmiObject Win32_VideoController
 $Graphic = $gpu.Name
 $GraphicDrivers = $gpu.DriverVersion
 ### My IP ###
-$ip=get-WmiObject Win32_NetworkAdapterConfiguration|Where {$_.Ipaddress.length -gt 1}
-$IP = $ip.ipaddress[0]
-# $PublicIP = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
+$Lanscan = Get-NetIPAddress|Where {$_.IPAddress.length -gt 1}  | Where{$_.AddressFamily -eq "IPV4"} | Where{$_.PrefixOrigin -eq "DHCP"} 
+$LocalIP = foreach ($IP in $Lanscan.IPAddress) { "/$IP\" }
+$PublicIP = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
 ### Last user ###
 $LastLoggedOnUser = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\LogonUI\').LastLoggedOnUser;
 ### OS Install Date ### 
@@ -71,8 +69,8 @@ write-host "Scan Date : $date"
 Write-Host ""
 Write-Host "Local Host" -ForegroundColor Green -BackgroundColor Black
 write-host "Hostname : $Hostname"
-write-host "Local IP Adress : $IP"
-#write-host "Public IP Address : $PublicIP"
+write-host "Local IP : $LocalIP"
+write-host "Public IP Address : $PublicIP"
 write-host "Last User : $LastLoggedOnUser"
 Write-Host ""
 Write-Host "Computer" -ForegroundColor Green -BackgroundColor Black
@@ -103,7 +101,6 @@ If (-not (Test-Path "c:\Nox_Script\$hostname.log")) {
 	New-Item -ItemType File -Path "c:\Nox_Script" -Name "$hostname.log"
 }
 
-
 ### Insert Info into Hostname.log ###
 $Local= "c:\Nox_Script\$hostname.log"
 ADD-content -path $Local -value "-----------------------------------------------"
@@ -111,8 +108,8 @@ ADD-content -path $Local -value "Scan Date : $date"
 ADD-content -path $Local -value ""
 ADD-content -path $Local -value "Local Host"
 ADD-content -path $Local -value "Hostname : $Hostname"
-ADD-content -path $Local -value "Local IP Adress : $IP"
-ADD-content -path $Local -value "Public IP Adress : $PublicIP"
+ADD-content -path $Local -value "Local IP : $LocalIP"
+ADD-content -path $Local -value "Public IP Address : $PublicIP"
 ADD-content -path $Local -value "Last User : $LastLoggedOnUser"
 ADD-content -path $Local -value ""
 ADD-content -path $Local -value "Computer"
@@ -139,5 +136,6 @@ $Open = Read-Host "Open Scan Log ? [y/n] "
 if ($Open -eq "y"){write.exe c:\Nox_Script\$hostname.log}
 write-host ""
 write-host "Thanks You"
+Start-sleep -s 5
 Exit
 }
