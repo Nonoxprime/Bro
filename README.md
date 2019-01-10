@@ -47,16 +47,15 @@
 <!-- /wp:heading -->
 
 <!-- wp:list -->
-<ul><li>### HOW I CAN RUN THIS SCRIPT ###</li></ul>
-<code>
-  Create a folder named Nox_Script
-  Copy Mining.ps1 inside this folder
-  Open Powershell
-  Use this command to go in your folder : cd C:/Nox_Script
-  Run this : Set-ExecutionPolicy Bypass -Scope Process
-  Validate script execution with O (Oui) or Y (Yes)
-  Then after run this commande : .\Mining.Ps1
- </code>
+<ul><li>### HOW I CAN RUN THIS SCRIPT ###</li>
+  <li>Create a folder named Nox_Script</li>
+  <li>Copy Mining.ps1 inside this folder</li>
+  <li>Open Powershell</li>
+  <li>Use this command to go in your folder : cd C:/Nox_Script</li>
+  <li>Run this : Set-ExecutionPolicy Bypass -Scope Process</li>
+  <li>Validate script execution with O (Oui) or Y (Yes)</li>
+  <li>Then after run this commande : .\Mining.Ps1</li>
+ </ul>
 <!-- /wp:list -->
 
 <!-- wp:heading {"level":4} -->
