@@ -43,11 +43,21 @@
 <!-- /wp:heading -->
 
 <!-- wp:heading {"level":4} -->
-<h4> Mining.Exe</h4>
+<h4> Sources_Mining.ps1</h4>
 <!-- /wp:heading -->
 
 <!-- wp:list -->
-<ul><li>Just need to run exe</li><li>If request select A (or T for French) + enter to execute this Script</li></ul>
+<ul><li>### HOW I CAN RUN THIS SCRIPT ###
+<#
+Create a folder named Nox_Script
+Copy Mining.ps1 inside this folder
+Open Powershell
+Use this command to go in your folder : cd C:/Nox_Script
+Run this : Set-ExecutionPolicy Bypass -Scope Process
+Validate script execution with O (Oui) or Y (Yes)
+Then after run this commande : .\Mining.Ps1
+Enjoy
+#></li></ul>
 <!-- /wp:list -->
 
 <!-- wp:heading {"level":4} -->
