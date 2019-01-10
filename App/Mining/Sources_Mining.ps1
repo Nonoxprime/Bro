@@ -173,19 +173,36 @@ if ($Action -eq "Download_Moonlander2") {
 if ($Action -eq "Configuration") {
 
 ### Config Pool Acces ###
+    write-host "POOL CONFIGURATION" -ForegroundColor green -BackgroundColor Black
+    Write-host "BTC Pool - BitCoin"-ForegroundColor yellow -BackgroundColor Black
+    Write-Host [1] " - SlushPool : stratum+tcp://stratum.slushpool.com:3333"
+    Write-Host [2] " - AntPool : stratum+tcp://stratum.antpool.com:3333"
+    Write-Host [3] " - Bitcoin Mining Merge Pool : stratum+tcp://mmpool.org:3334"
+    write-host ""
+    Write-host "LTC Pool - LiteCoin"-ForegroundColor yellow -BackgroundColor Black
+    Write-Host [4] " - stratum+tcp://litecoinpool.org:3333"
+    Write-Host [C] "- Custom Pool"
     write-host ""
     $Pool = Read-Host "Mining Pool Address "
     if ($Pool -eq $null) {$Pool = "stratum+tcp://litecoinpool.org:3333"}
+    if ($Pool -eq "1") {$Pool = "stratum+tcp://stratum.slushpool.com:3333"}
+    if ($Pool -eq "2") {$Pool = "stratum+tcp://stratum.antpool.com:3333"}
+    if ($Pool -eq "3") {$Pool = "stratum+tcp://mmpool.org:3334"}
+    if ($Pool -eq "4") {$Pool = "stratum+tcp://litecoinpool.org:3333"}
+    if ($Pool -eq "C") {$Pool = Read-Host "Custom Mining Pool Address "}
+
     $PoolMining = $PoolMining.Replace("$PoolMining", "$Pool")
 
 ### Config USER Acces ###
     write-host ""
+    write-host "USER POOL CONFIGURATION"-ForegroundColor green -BackgroundColor Black
     $PUser = Read-Host "Pool User Like User.worker "
     if ($PUser -eq $null) {$PUser = "Nox81.guest"}
     $PoolUser = $PoolUser.Replace("$PoolUser", "$PUser")
 
 ### Config Pool Pass ###
     write-host ""
+    write-host "PASSWORD POOL CONFIGURATION"-ForegroundColor green -BackgroundColor Black
     $PPass = Read-Host "Worker Password "
     if ($PPass -eq $null) {$PPass = "1"}
     $PoolPass = $PoolPass.Replace("$PoolPass", "$PPass")
