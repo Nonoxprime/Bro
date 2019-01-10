@@ -83,6 +83,14 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
+<p>10/01/2019 - 1.0110.19</p>
+<!-- /wp:paragraph -->
+<!-- wp:list -->
+<ul><li>Add Pool Selector in Mining.ps1</li>
+  <li>Remove Mining.exe - Mistake Script process</li></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
 <p>07/01/2019 - 1.0105.19</p>
 <!-- /wp:paragraph -->
 
