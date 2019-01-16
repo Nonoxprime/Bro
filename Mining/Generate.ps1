@@ -158,11 +158,11 @@ write-host ""
                     }
 
                     if (-not (Test-Path -Path ".\Soft\FinMiner-windows-2.4.7\config.ini")) {
-                        Copy-Item -Path ".\XMR_config.ini" -Destiantion ".\Soft\FinMiner-windows-2.4.7\"
+                        Copy-Item -Path ".\XMR_config.ini" -Destination ".\Soft\FinMiner-windows-2.4.7\"
                         Rename-Item -Path ".\Soft\FinMiner-windows-2.4.7\XMR_config.ini" -NewName "config.ini"
                     } else {
                             remove-item .\Soft\FinMiner-windows-2.4.7\config.ini
-                            Copy-Item -Path ".\Config\XMR_config.ini" -Destiantion ".\Soft\FinMiner-windows-2.4.7\"
+                            Copy-Item -Path ".\Config\XMR_config.ini" -Destination ".\Soft\FinMiner-windows-2.4.7\"
                             Rename-Item -Path ".\Soft\FinMiner-windows-2.4.7\XMR_config.ini" -NewName "config.ini"    
                         }
                     $writeCPU ="n"
@@ -191,10 +191,11 @@ write-host ""
                     Write-host "XMR_Config.ini Default" -ForegroundColor red -BackgroundColor Black
                     Remove-item ".\Config\XMR_config.ini" -Force
                     New-Item -Path ".\Config\" -Name "XMR_config.ini" -ItemType file -Force
+                    $Random = Get-Random
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "wallet=41qxwkdHtMBHN7P8qAKptN6gQkZAUvY6AMtymXhVYH2j13Hxb9LEX1RCKE3Hr852RDGPUwe7xF8uf3iK75c3PZYt6d4KnUo"
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "algorithm=Cryptonightv8"
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "coin=XMR"
-                    ADD-Content -Path ".\Config\XMR_config.ini" -Value "rigName=Nox81"
+                    ADD-Content -Path ".\Config\XMR_config.ini" -Value "rigName=$Random"
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "email=Contact@gameoverblog.fr"
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool1 = xmr-eu1.nanopool.org:14444"
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool2 = xmr-eu2.nanopool.org:14444"

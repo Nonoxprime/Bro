@@ -26,10 +26,11 @@ if (-not (Test-Path ".\Config\Userconfig.conf")) {
 
 if (-not (Test-Path ".\Config\XMR_config.ini")) {
 New-Item -Path ".\Config\" -Name "XMR_config.ini" -ItemType file -Force
+$Random = Get-Random
 ADD-Content -Path ".\Config\XMR_config.ini" -Value "wallet=41qxwkdHtMBHN7P8qAKptN6gQkZAUvY6AMtymXhVYH2j13Hxb9LEX1RCKE3Hr852RDGPUwe7xF8uf3iK75c3PZYt6d4KnUo"
 ADD-Content -Path ".\Config\XMR_config.ini" -Value "algorithm=Cryptonightv8"
 ADD-Content -Path ".\Config\XMR_config.ini" -Value "coin=XMR"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "rigName=Nox81"
+ADD-Content -Path ".\Config\XMR_config.ini" -Value "rigName=$Random"
 ADD-Content -Path ".\Config\XMR_config.ini" -Value "email=Contact@gameoverblog.fr"
 ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool1 = xmr-eu1.nanopool.org:14444"
 ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool2 = xmr-eu2.nanopool.org:14444"
