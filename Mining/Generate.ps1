@@ -22,11 +22,11 @@ while ($Job -ne "done"){
 
 if ($writeCPU -eq "y") {
     write-host "CONFIGURATION" -ForegroundColor Green -BackgroundColor Black
-                    write-host "CPUMINER - Configugartion  Saved" -ForegroundColor red -BackgroundColor Black
+                    write-host "CPUMINER - Configuration  Saved" -ForegroundColor red -BackgroundColor Black
                     }
 if ($writeGPU -eq "y") {
     write-host "CONFIGURATION" -ForegroundColor Green -BackgroundColor Black
-                    write-host "CGMINER - Configugartion  Saved" -ForegroundColor red -BackgroundColor Black
+                    write-host "CGMINER - Configuration  Saved" -ForegroundColor red -BackgroundColor Black
                     }
 if ($Writemoon -eq "y") {
     write-host "CONFIGURATION" -ForegroundColor Green -BackgroundColor Black
