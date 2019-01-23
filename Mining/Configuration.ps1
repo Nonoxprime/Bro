@@ -10,34 +10,6 @@
 ## GITHUB : https://github.com/Nonoxprime/Bro
 ### Thanks for your help, enjoy this script
 
-### Default config File
-if (-not (Test-Path ".\Config\Userconfig.conf")) {
-    New-Item -Path ".\Config\" -Name "Userconfig.conf" -ItemType file -force
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "[Config File]"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "1.0110.19"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "[Mining Pool]"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "stratum+tcp://litecoinpool.org:3333"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "[User.worker]"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "Nox81.guest"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "[WorkerPassword]"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "1"
-    write-host ""
-}
-
-if (-not (Test-Path ".\Config\XMR_config.ini")) {
-New-Item -Path ".\Config\" -Name "XMR_config.ini" -ItemType file -Force
-$Random = Get-Random
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "wallet=41qxwkdHtMBHN7P8qAKptN6gQkZAUvY6AMtymXhVYH2j13Hxb9LEX1RCKE3Hr852RDGPUwe7xF8uf3iK75c3PZYt6d4KnUo"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "algorithm=Cryptonightv8"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "coin=XMR"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "rigName=$Random"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "email=Contact@gameoverblog.fr"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool1 = xmr-eu1.nanopool.org:14444"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool2 = xmr-eu2.nanopool.org:14444"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool3 = xmr-us-east1.nanopool.org:14444"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool4 = xmr-us-west1.nanopool.org:14444"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool5 = xmr-asia1.nanopool.org:14444"}
-
 ### Variables identification ###
 
 $Version = Get-Content -Path .\Config\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 1

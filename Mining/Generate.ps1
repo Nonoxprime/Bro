@@ -116,8 +116,8 @@ write-host ""
             while ($pass -ne "y") {
                     if ($pass -eq "n"){write-host "Warning Wrong value please choose a num between 600 and 660"  -ForegroundColor red -BackgroundColor Black}
                     write-host ""
-                    $OC = read-host "MoonLander 2 Clock [600-660] "
-                    if ($OC -ge 600 -and $OC -le 660){
+                    $OC = read-host "MoonLander 2 Clock [600-954] "
+                    if ($OC -ge 600 -and $OC -le 954){
                         write-host "You have set your Moonlander Clock at " -NoNewline
                         write-host "$OC" -ForegroundColor green -BackgroundColor Black
                         $Pass = "y"
