@@ -83,7 +83,6 @@ write-host ""
         Write-Host ""
         $escape = ":"
         $Confsetup= ".\Config\_Start_CPUMINER.bat"
-        ADD-content -path $Confsetup -value "cd .."
         ADD-content -path $Confsetup -value ".\Soft\CPUminer2.5.0\minerd.exe --url=$Poolmining --userpass=$PoolUser$escape$PoolPass"
         }
 
@@ -99,7 +98,6 @@ write-host ""
                     }                         
         Write-Host ""
         $Confsetup= ".\Config\_Start_CGMINER.bat"
-        ADD-content -path $Confsetup -value "cd .."
         ADD-content -path $Confsetup -value ".\Soft\CGminer3.7.2\cgminer -o $Poolmining -u $PoolUser -p $PoolPass"
         $writeCPU ="n"
         $writeGPU ="y"
@@ -136,7 +134,6 @@ write-host ""
                     }                         
                     Write-Host ""
                     $Confsetup= ".\Config\_Start_BFGMINER_Moonlander-Edition.bat"
-                    ADD-content -path $Confsetup -value "cd .."
                     ADD-content -path $Confsetup -value ".\Soft\BFGminer-5.4.2\bfgminer.exe --scrypt -o $Poolmining -u $PoolUser -p $PoolPass,d=128  -S MLD:all --set MLD:clock=$OC" 
                     $writeCPU ="n"
                     $writeGPU ="n"
@@ -165,6 +162,7 @@ write-host ""
                             Copy-Item -Path ".\Config\XMR_config.ini" -Destination ".\Soft\FinMiner-windows-2.4.7\"
                             Rename-Item -Path ".\Soft\FinMiner-windows-2.4.7\XMR_config.ini" -NewName "config.ini"    
                         }
+
                     $writeCPU ="n"
                     $writeGPU ="n"
                     $Writemoon ="n"
