@@ -83,6 +83,16 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
+<p>27/01/2019 - 1.0126.19</p>
+<!-- /wp:paragraph -->
+<!-- wp:list -->
+<ul><li>Add Pool Startup</li>
+  <li>Add Donation Function</li>
+  <li>Cleaning Code</li></ul>
+<!-- /wp:list -->
+
+
+<!-- wp:paragraph -->
 <p>10/01/2019 - 1.0110.19</p>
 <!-- /wp:paragraph -->
 <!-- wp:list -->
