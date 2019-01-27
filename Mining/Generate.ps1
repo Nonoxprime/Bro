@@ -84,7 +84,29 @@ write-host ""
         $escape = ":"
         $Confsetup= ".\Config\_Start_CPUMINER.bat"
         ADD-content -path $Confsetup -value ".\Soft\CPUminer2.5.0\minerd.exe --url=$Poolmining --userpass=$PoolUser$escape$PoolPass"
+        
+    #Startup#
+    $Startup = Read-Host "Add to Startup ? [Y/N] "
+    if ($startup -eq "Y"){
+        if (-not (Test-Path ".\Config\CPUMINER_Startup.bat")) {
+            New-Item -Path ".\Config\" -Name "CPUMINER_Startup.bat" -ItemType file
+            $Confsetup = ".\Config\CPUMINER_Startup.bat"
+            $loc = Get-Location
+            ADD-content -path $Confsetup -value "$loc\Soft\CPUminer2.5.0\minerd.exe --url=$Poolmining --userpass=$PoolUser$escape$PoolPass"
+            Copy-Item $Confsetup -Destination "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
         }
+        Else {
+            Remove-item .\Config\CPUMINER_Startup.bat
+            New-Item -Path ".\Config\" -Name "CPUMINER_Startup.bat" -ItemType file
+            $Confsetup = ".\Config\CPUMINER_Startup.bat"
+            $loc = Get-Location
+            ADD-content -path $Confsetup -value "$loc\Soft\CPUminer2.5.0\minerd.exe --url=$Poolmining --userpass=$PoolUser$escape$PoolPass"
+            Copy-Item $Confsetup -Destination "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+        }
+    }
+#Startup#
+    
+    }
 
         if ($Job -eq "2")   {
         Write-Host ""
@@ -99,6 +121,28 @@ write-host ""
         Write-Host ""
         $Confsetup= ".\Config\_Start_CGMINER.bat"
         ADD-content -path $Confsetup -value ".\Soft\CGminer3.7.2\cgminer -o $Poolmining -u $PoolUser -p $PoolPass"
+
+#Startup#
+        $Startup = Read-Host "Add to Startup ? [Y/N] "
+        if ($startup -eq "Y"){
+            if (-not (Test-Path ".\Config\CGMINER_Startup.bat")) {
+                New-Item -Path ".\Config\" -Name "CGMINER_Startup.bat" -ItemType file
+                $Confsetup = ".\Config\CGMINER_Startup.bat"
+                $loc = Get-Location
+                ADD-content -path $Confsetup -value "$loc\Soft\CGminer3.7.2\cgminer -o $Poolmining -u $PoolUser -p $PoolPass"
+                Copy-Item $Confsetup -Destination "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+            }
+            Else {
+                Remove-item .\Config\CGMINER_Startup.bat
+                New-Item -Path ".\Config\" -Name "CGMINER_Startup.bat" -ItemType file
+                $Confsetup = ".\Config\CGMINER_Startup.bat"
+                $loc = Get-Location
+                ADD-content -path $Confsetup -value "$loc\Soft\CGminer3.7.2\cgminer -o $Poolmining -u $PoolUser -p $PoolPass"
+                Copy-Item $Confsetup -Destination "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+            }
+        }
+#Startup#
+
         $writeCPU ="n"
         $writeGPU ="y"
         $Writemoon ="n"
@@ -127,14 +171,33 @@ write-host ""
             }
 
                     if (-not (Test-Path ".\Config\_Start_BFGMINER_Moonlander-Edition.bat")) {
-                    New-Item -Path ".\Config\" -Name "_Start_BFGMINER_Moonlander-Edition.bat" -ItemType file
+                    New-Item -Path ".\Config" -Name "_Start_BFGMINER_Moonlander-Edition.bat" -ItemType file
                     } else {
                         remove-item .\Config\_Start_BFGMINER_Moonlander-Edition.bat
-                        New-Item -Path ".\Config\" -Name "_Start_BFGMINER_Moonlander-Edition.bat" -ItemType file
+                        New-Item -Path ".\Config" -Name "_Start_BFGMINER_Moonlander-Edition.bat" -ItemType file
                     }                         
                     Write-Host ""
                     $Confsetup= ".\Config\_Start_BFGMINER_Moonlander-Edition.bat"
                     ADD-content -path $Confsetup -value ".\Soft\BFGminer-5.4.2\bfgminer.exe --scrypt -o $Poolmining -u $PoolUser -p $PoolPass,d=128  -S MLD:all --set MLD:clock=$OC" 
+                    $Startup = Read-Host "Add to Startup ? [Y/N] "
+                    if ($startup -eq "Y"){
+                        if (-not (Test-Path ".\Config\BFGMINER_Moonlander-Edition_Startup.bat")) {
+                            New-Item -Path ".\Config" -Name "BFGMINER_Moonlander-Edition_Startup.bat" -ItemType file
+                            $Confsetup = ".\Config\BFGMINER_Moonlander-Edition_Startup.bat"
+                            $loc = Get-Location
+                            ADD-content -path $Confsetup -value "$loc\Soft\BFGminer-5.4.2\bfgminer.exe --scrypt -o $Poolmining -u $PoolUser -p $PoolPass,d=128  -S MLD:all --set MLD:clock=$OC"
+                            Copy-Item $Confsetup -Destination "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+                        }
+                        Else {
+                            Remove-item .\Config\BFGminer-5.4.2\BFGMINER_Moonlander-Edition_Startup.bat
+                            New-Item -Path ".\Config" -Name "BFGMINER_Moonlander-Edition_Startup.bat" -ItemType file
+                            $Confsetup = ".\Config\BFGMINER_Moonlander-Edition_Startup.bat"
+                            $loc = Get-Location
+                            ADD-content -path $Confsetup -value "$loc\Soft\BFGminer-5.4.2\bfgminer.exe --scrypt -o $Poolmining -u $PoolUser -p $PoolPass,d=128  -S MLD:all --set MLD:clock=$OC"
+                            Copy-Item $Confsetup -Destination "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+                        }
+                    }
+
                     $writeCPU ="n"
                     $writeGPU ="n"
                     $Writemoon ="y"
