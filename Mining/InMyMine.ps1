@@ -29,7 +29,7 @@ if (-not (Test-Path ".\Soft")) {New-Item -Path ".\" -Name "Soft" -ItemType Direc
 if (-not (Test-Path ".\Config\Userconfig.conf")) {
     New-Item -Path ".\Config\" -Name "Userconfig.conf" -ItemType file -force
     ADD-Content -Path ".\Config\Userconfig.conf" -Value "[Config File]"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "1.0126.19"
+    ADD-Content -Path ".\Config\Userconfig.conf" -Value "1.0213.19"
     ADD-Content -Path ".\Config\Userconfig.conf" -Value "[Mining Pool]"
     ADD-Content -Path ".\Config\Userconfig.conf" -Value "stratum+tcp://litecoinpool.org:3333"
     ADD-Content -Path ".\Config\Userconfig.conf" -Value "[User.worker]"
@@ -58,7 +58,7 @@ while ($Start -ne "y"){
 
 Write-Host ""
 Write-Host " --- Mining ToolBag --- "
-Write-Host "Tool Version 1.0126.19"
+Write-Host "Tool Version 1.0213.19"
 Write-Host ""
 
 write-host "Menu" -ForegroundColor Green -BackgroundColor Black
