@@ -32,9 +32,13 @@ if ($Writemoon -eq "y") {
     write-host "CONFIGURATION" -ForegroundColor Green -BackgroundColor Black
                     Write-Host "Moonlander Scrypt USB - config Saved" -ForegroundColor red -BackgroundColor Black
 }
+if ($Write2Pac -eq "y") {
+    write-host "CONFIGURATION" -ForegroundColor Green -BackgroundColor Black
+                    Write-Host "GekkoScience 2Pac USB - config Saved" -ForegroundColor red -BackgroundColor Black
+}
 if ($WriteFinminer -eq "y") {
     write-host "CONFIGURATION" -ForegroundColor Green -BackgroundColor Black
-    Write-Host "FinMiner - config Saved" -ForegroundColor red -BackgroundColor Black
+                    Write-Host "FinMiner - config Saved" -ForegroundColor red -BackgroundColor Black
 }
 if ($Restore -eq "y") {
     write-host "CONFIGURATION" -ForegroundColor Green -BackgroundColor Black
@@ -43,10 +47,11 @@ if ($Restore -eq "y") {
 
 write-host ""
     write-host "Write Config" -ForegroundColor Green -BackgroundColor Black
-    Write-Host [1] "- Write CPUMINER Configuration (CPU)"
-    Write-Host [2] "- Write CGMINER Configuration (GPU)"
-    Write-Host [3] "- Write Moonlander 2 Configuration (USB)"
-    Write-Host [4] "- Write FinMiner Configuration (Monero/Etherium)"
+    Write-Host [1] "- Write CPUMINER Configuration (CPU) -All "
+    Write-Host [2] "- Write CGMINER Configuration (GPU) - All "
+    Write-Host [3] "- Write Moonlander 2 Configuration (USB) - SCRYPT "
+    Write-Host [4] "- Write Moonlander 2 Configuration (USB) - SHA-256 "
+    Write-Host [5] "- Write FinMiner Configuration (Monero/Etherium) "
     Write-Host [X] "- Config Error : Regen it"
     Write-Host [R] "- RETURN "
     Write-host ""
@@ -55,19 +60,21 @@ write-host ""
     if ($ConfigJob -eq $null) {$Job = "r"}
     switch ( $ConfigJob )
 {
-    1 { $Job = "1"}
-    2 { $Job = "2"}
-    3 { $Job = "3"}
-    4 { $Job = "4"}
+    1 { $Job = "CPU"}
+    2 { $Job = "GPU"}
+    3 { $Job = "Moon"}
+    4 { $Job = "2Pac"}
+    5 { $Job = "Finminer"}
     
     X { $Job = "X"}
     R { $Job = "r"}
 }
-    if ($Job -eq "1")   {
+    if ($Job -eq "CPU")   {
         
         $writeCPU = "y"
         $writeGPU = "n"
         $Writemoon = "n"
+        $Write2Pac = "n"
         $WriteFinminer = "n"
         $Restore = "n"
 
@@ -85,7 +92,7 @@ write-host ""
         $Confsetup= ".\Config\_Start_CPUMINER.bat"
         ADD-content -path $Confsetup -value ".\Soft\CPUminer2.5.0\minerd.exe --url=$Poolmining --userpass=$PoolUser$escape$PoolPass"
         
-    #Startup#
+#Startup#
     $Startup = Read-Host "Add to Startup ? [Y/N] "
     if ($startup -eq "Y"){
         if (-not (Test-Path ".\Config\CPUMINER_Startup.bat")) {
@@ -108,7 +115,7 @@ write-host ""
     
     }
 
-        if ($Job -eq "2")   {
+        if ($Job -eq "GPU")   {
         Write-Host ""
         write-host "Writing _Start_CGMINER.bat"           
         Write-Host ""
@@ -146,11 +153,12 @@ write-host ""
         $writeCPU ="n"
         $writeGPU ="y"
         $Writemoon ="n"
+        $Write2Pac = "n"
         $WriteFinminer ="n"
         $Restore = "n"
                 }
 
-        if ($Job -eq "3")   {
+        if ($Job -eq "Moon")   {
             Write-Host ""
             write-host "Writing _Start_BFGMINER_Moonlander-Edition.bat"           
             Write-Host ""
@@ -201,11 +209,57 @@ write-host ""
                     $writeCPU ="n"
                     $writeGPU ="n"
                     $Writemoon ="y"
+                    $Write2Pac = "n"
                     $WriteFinminer ="n"
                     $Restore = "n"
                 }
 
-                if ($Job -eq "4")   {
+
+                if ($Job -eq "2Pac")   {
+                    Write-Host ""
+                    write-host "Writing _Start_CGMINER_2Pac_Edition.bat"           
+                    Write-Host ""
+                    if (-not (Test-Path ".\Config\_start_CGMINER_Gekko2Pac.bat")) {
+                                New-Item -Path ".\Config\" -Name "_Start_CGMINER_Gekko2Pac.bat" -ItemType file
+                                } else {
+                                remove-item .\Config\_Start_CGMINER.bat
+                                New-Item -Path ".\Config\" -Name "_Start_CGMINER_Gekko2Pac.bat" -ItemType file
+                                }                         
+                    Write-Host ""
+                    $Confsetup= ".\Config\_Start_CGMINER_Gekko2Pac.bat"
+                    ADD-content -path $Confsetup -value ".\Soft\CGminer-4.10.0_Gekko\cgminer -o $Poolmining -u $PoolUser -p $PoolPass --suggest-diff 32 --gekko-2pac-freq 150"
+            
+            #Startup#
+                    $Startup = Read-Host "Add to Startup ? [Y/N] "
+                    if ($startup -eq "Y"){
+                        if (-not (Test-Path ".\Config\CGMINER_2Pac_Startup.bat")) {
+                            New-Item -Path ".\Config\" -Name "CGMINER_2Pac_Startup.bat" -ItemType file
+                            $Confsetup = ".\Config\CGMINER_2Pac_Startup.bat"
+                            $loc = Get-Location
+                            ADD-content -path $Confsetup -value "$loc\Soft\CGminer-4.10.0_Gekko\cgminer -o $Poolmining -u $PoolUser -p $PoolPass --suggest-diff 32 --gekko-2pac-freq 150"
+                            Copy-Item $Confsetup -Destination "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+                        }
+                        Else {
+                            Remove-item .\Config\CGMINER_2Pac_Startup.bat
+                            New-Item -Path ".\Config\" -Name "CGMINER_2Pac_Startup.bat" -ItemType file
+                            $Confsetup = ".\Config\CGMINER_2Pac_Startup.bat"
+                            $loc = Get-Location
+                            ADD-content -path $Confsetup -value "$loc\Soft\CGminer-4.10.0_Gekko\cgminer -o stratum+tcp://stratum.slushpool.com:3333 -u Noxquartek.test -p 1234 --suggest-diff 32 --gekko-2pac-freq 150"
+                            Copy-Item $Confsetup -Destination "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
+                        }
+                    }
+            #Startup#
+            
+                    $writeCPU ="n"
+                    $writeGPU ="n"
+                    $Writemoon ="n"
+                    $Write2Pac = "y"
+                    $WriteFinminer ="n"
+                    $Restore = "n"
+                            }
+            
+
+                if ($Job -eq "Finminer")   {
                     Write-Host ""
                     write-host "Writing FinMiner Config"           
                     Write-Host ""
@@ -229,6 +283,7 @@ write-host ""
                     $writeCPU ="n"
                     $writeGPU ="n"
                     $Writemoon ="n"
+                    $Write2Pac = "n"
                     $WriteFinminer ="y"
                     $Restore = "n"
                             }
@@ -267,6 +322,7 @@ write-host ""
                     $writeCPU ="n"
                     $writeGPU ="n"
                     $Writemoon ="n"
+                    $Write2Pac = "n"
                     $WriteFinminer ="n"
                     $Restore = "y"
                 }
@@ -275,6 +331,7 @@ write-host ""
                         $writeCPU ="n"
                         $writeGPU ="n"
                         $Writemoon ="n"
+                        $Write2Pac = "n"
                         $Restore = "n"
                         $Job = "done"
                     .\InMyMine.ps1

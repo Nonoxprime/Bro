@@ -1,5 +1,5 @@
 ﻿### By Nox Prime for Gameoverblog.fr ###
-### 1.0126.19 ###
+### 1.0213.19 ###
 ### Help me for a coffee/Vodka ... Both :) ?: 
 ### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
 ### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
@@ -11,7 +11,7 @@
 ### HOW I CAN RUN THIS SCRIPT ###
 <#
 Create a folder named Nox_Script
-Copy InMyMine.ps1 inside this folder
+Copy scripts inside this folder
 Open Powershell
 Use this command to go in your folder : cd C:/Nox_Script
 Run this : Set-ExecutionPolicy Bypass -Scope Process
@@ -65,13 +65,13 @@ write-host "Menu" -ForegroundColor Green -BackgroundColor Black
 write-host [D] "Download Mining Client" -ForegroundColor Yellow -BackgroundColor Black
 Write-Host [S] "Setup and generate Config File"-ForegroundColor Yellow -BackgroundColor Black
 Write-Host [C] "Check Your System"-ForegroundColor Yellow -BackgroundColor Black
-Write-Host [A] "[WIP WIP WIP] Automation - Start and Mine [WIP WIP WIP]"-ForegroundColor Yellow -BackgroundColor Black
-Write-Host [0]" - Donation (only 1hour CGminer For Dev)"
+Write-Host [0]" Donation (only 1hour CGminer For Dev)"
 Write-Host ""
 write-host "Work" -ForegroundColor Green -BackgroundColor Black
-Write-Host [6]" - Start CPU Mining (CPUminer)"
-Write-Host [7]" - Start GPU Mining (CGminer)"
-Write-Host [8]" - Start Moonlander 2 Mining (BFGminer)"
+Write-Host [5]" - Start CPU Mining (CPUminer)"
+Write-Host [6]" - Start GPU Mining (CGminer)"
+Write-Host [7]" - Start Moonlander Mining (BFGminer Moonlander 2 Edition)"
+Write-Host [8]" - Start 2Pac Mining (CGminer 2Pac Edition)"
 Write-Host [9]" - Monero Mining (Finminer)"
 
 Write-Host [Q] - "Quit" 
@@ -94,9 +94,10 @@ switch ( $Choix )
     A { $Action = "Automation"}
     
 
-    6 { $Action = "StartCPU"}
-    7 { $Action = "StartGPU"}
-    8 { $Action = "Moonlander"}
+    5 { $Action = "StartCPU"}
+    6 { $Action = "StartGPU"}
+    7 { $Action = "Moonlander"}
+    8 { $Action = "2Pac"}
     9 { $Action = "FinMiner"}
     0 { $Action = "Donation"}
 
@@ -155,14 +156,6 @@ if ($Action -eq "Check") {
     .\System_Check.ps1
     exit}
 
-### Automation ###
-### -> Copie config File dans shell:startup
-### Autolog User --< 
-if ($Action -eq "Automation") {
-#    Copy-Item WHAT -Destination "$env:APPDATA\Microsoft\Windows\'Start Menu'\Programs\Startup"
-write-Host "WIP"
-}
-
 ### Start Work ###    
 if ($Action -eq "StartCPU"){
     write-host "Start CPUminer Job"
@@ -180,6 +173,12 @@ if ($Action -eq "MoonLander"){
     write-host "Start Moonlander Job"
     Write-Host ""
     start-process -filepath .\Config\_start_BFGMINER_Moonlander-Edition.bat
+}
+
+if ($Action -eq "2Pac"){
+    write-host "Start 2Pac Job"
+    Write-Host ""
+    start-process -filepath .\Config\_Start_CGMINER_Gekko2Pac.bat
 }
 
 if ($Action -eq "FinMiner"){

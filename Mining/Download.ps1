@@ -1,7 +1,6 @@
 ### Download Session ###
 
 ### By Nox Prime for Gameoverblog.fr ###
-### 1.0110.19 ###
 ### Help me for a coffee/Vodka ... Both :) ?: 
 ### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
 ### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
@@ -15,16 +14,18 @@ while ($Completed -ne "OK") {
     Write-host "Download Software" -ForegroundColor Green -BackgroundColor Black
     Write-Host [1] " - CPUMiner -- (CPU)"
     Write-Host [2] " - CGMiner -- (GPU)"
-    Write-Host [3] " - BFGMiner Moonlander 2 -- (USB)"
-    write-Host [4] " - FinMiner -- Monero (GPU)"
+    Write-Host [3] " - BFGMiner Moonlander 2 Edition -- (USB)"
+    Write-Host [4] " - CGminer GekkoScience 2Pac Edition -- (USB)"
+    write-Host [5] " - FinMiner -- Monero (GPU)"
     write-Host [R] " - Return"
     write-host ""
-    $Download = read-host "Which Client do you want to download ?"
+    $Download = read-host "Which Client do you want to download ? "
     
     if ($Download -eq "1") { $Action = 'Download_CPUminer'}
     if ($Download -eq "2") { $Action = 'Download_CGminer'}
     if ($Download -eq "3") { $Action = 'Download_Moonlander2'}
-    if ($Download -eq "4") { $Action = 'Download_FinMiner'}
+    if ($Download -eq "4") { $Action = 'Download_Gekko2pac'}
+    if ($Download -eq "5") { $Action = 'Download_FinMiner'}
     
         if ($Download -eq "R") { 
         .\InMyMine.ps1
@@ -121,6 +122,53 @@ if ($Action -eq "Download_Moonlander2") {
         New-Item -Path ".\Config\" -Name "_Start_BFGMINER_Moonlander-Edition.bat" -ItemType file
         $Confsetup= ".\Config\_Start_BFGMINER_Moonlander-Edition.bat"
         ADD-content -path $Confsetup -value ".\Soft\BFGminer-5.4.2\bfgminer.exe --scrypt -o stratum+tcp://litecoinpool.org:3333 -u Nox81.guest -p 1,d=128  -S MLD:all --set MLD:clock=660" 
+        $Completed = "OK"
+        }
+}
+
+if ($Action -eq "Download_Gekko2pac") {
+    if (-not (Test-Path ".\Soft\CGminer-4.10.0_Gekko")) {New-Item -Path ".\Soft\" -Name "CGminer-4.10.0_Gekko" -ItemType directory -force
+    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/cgminer-4.10.0_Gekko.zip" -OutFile ".\Soft\CGminer-4.10.0_Gekko\Cgminer.zip"
+    expand-archive -path '.\Soft\CGminer-4.10.0_Gekko\Cgminer.zip' -destinationpath '.\Soft\CGminer-4.10.0_Gekko\' -Force
+    Remove-Item .\Soft\cgminer-4.10.0_Gekko\Cgminer.zip -Force
+    
+    Write-Host ""
+    Write-Host "Zadig Config" -ForegroundColor Green -BackgroundColor black
+    Write-Host "Select - Options" -ForegroundColor red -BackgroundColor black
+    Write-Host "Select - List All devices" -ForegroundColor red -BackgroundColor black
+    Write-Host "Select - 2Pac BM1384 Bitcoin Miner " -ForegroundColor red -BackgroundColor black
+    Write-Host "Select - WinUSB " -ForegroundColor red -BackgroundColor black
+    Write-Host "Select - Replace or Install Driver " -ForegroundColor red -BackgroundColor black
+    Write-Host "You can Close Zadig" -ForegroundColor Green -BackgroundColor black
+    start-process -filepath .\Soft\CGminer-4.10.0_Gekko\zadig-2.4.exe -Wait
+    }else{
+    remove-item ".\Soft\CGminer-4.10.0_Gekko\" -Force -Recurse
+    New-Item -Path ".\Soft\" -Name "CGminer-4.10.0_Gekko" -ItemType directory -force
+    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/cgminer-4.10.0_Gekko.zip" -OutFile ".\Soft\CGminer-4.10.0_Gekko\Cgminer.zip"
+    expand-archive -path '.\Soft\CGminer-4.10.0_Gekko\Cgminer.zip' -destinationpath '.\Soft\CGminer-4.10.0_Gekko\' -Force
+    Remove-Item .\Soft\cgminer-4.10.0_Gekko\Cgminer.zip -Force
+    
+    Write-Host ""
+    Write-Host "Zadig Config" -ForegroundColor Green -BackgroundColor black
+    Write-Host "Select - Options" -ForegroundColor red -BackgroundColor black
+    Write-Host "Select - List All devices" -ForegroundColor red -BackgroundColor black
+    Write-Host "Select - 2Pac BM1384 Bitcoin Miner " -ForegroundColor red -BackgroundColor black
+    Write-Host "Select - WinUSB " -ForegroundColor red -BackgroundColor black
+    Write-Host "Select - Replace or Install Driver " -ForegroundColor red -BackgroundColor black
+    Write-Host "You can Close Zadig" -ForegroundColor Green -BackgroundColor black
+    start-process -filepath .\Soft\CGminer-4.10.0_Gekko\zadig-2.4.exe -Wait
+}
+
+    if (-not (Test-Path ".\Config\_Start_CGMINER_Gekko2Pac.bat")) {
+        New-Item -Path ".\Config\" -Name "_Start_CGMINER_Gekko2Pac.bat" -ItemType file -force
+        $Confsetup= ".\Config\_Start_CGMINER_Gekko2Pac.bat"
+        ADD-content -path $Confsetup -value ".\Soft\CGminer-4.10.0_Gekko\cgminer -o stratum+tcp://stratum.slushpool.com:3333 -u Noxquartek.test -p 1234 --suggest-diff 32 --gekko-2pac-freq 150"
+        $Completed = "OK"
+    }Else{
+        Remove-Item -Force -Recurse ".\Config\_Start_CGMINER_Gekko2Pac.bat.bat"
+        New-Item -Path ".\Config\" -Name "_Start_CGMINER_Gekko2Pac.bat.bat" -ItemType file
+        $Confsetup= ".\Config\_Start_CGMINER_Gekko2Pac.bat.bat"    
+        ADD-content -path $Confsetup -value ".\Soft\CGminer-4.10.0_Gekko\cgminer -o stratum+tcp://stratum.slushpool.com:3333 -u Noxquartek.test -p 1234 --suggest-diff 32 --gekko-2pac-freq 150"
         $Completed = "OK"
         }
 }

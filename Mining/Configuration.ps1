@@ -1,7 +1,7 @@
 ### Download Session ###
 
 ### By Nox Prime for Gameoverblog.fr ###
-### 1.0110.19 ###
+### 1.0209.19 ###
 ### Help me for a coffee/Vodka ... Both :) ?: 
 ### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
 ### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
@@ -26,8 +26,7 @@ while ($Completed -ne "OK") {
     Write-host [1] "BTC Pool - BitCoin "-ForegroundColor yellow -BackgroundColor Black
     Write-host [2] "LTC Pool - LiteCoin "-ForegroundColor red -BackgroundColor Black
     Write-host [3] "XMR Pool - Monero " -ForegroundColor magenta -BackgroundColor Black
- #   Write-host [4] "ETH Pool - Etherium " -ForegroundColor blue -BackgroundColor Black
-    Write-host [G] "Generate config File" -ForegroundColor green -BackgroundColor Black
+    Write-host [G] "Generate config File" -ForegroundColor Blue -BackgroundColor Black
     Write-Host [Q] "Quit" -ForegroundColor magenta -BackgroundColor Black
     write-host ""
 
