@@ -83,6 +83,14 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
+<p>11/03/2019 - 1.0311.19</p>
+<!-- /wp:paragraph -->
+<!-- wp:list -->
+<ul><li>Remove Finminer</li>
+  <li>Add Nanominer</li>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
 <p>27/01/2019 - 1.0126.19</p>
 <!-- /wp:paragraph -->
 <!-- wp:list -->
