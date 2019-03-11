@@ -35,9 +35,9 @@ if ($Write2Pac -eq "y") {
     write-host "CONFIGURATION" -ForegroundColor Green -BackgroundColor Black
                     Write-Host "GekkoScience 2Pac USB - config Saved" -ForegroundColor red -BackgroundColor Black
 }
-if ($WriteFinminer -eq "y") {
+if ($WriteNanominer -eq "y") {
     write-host "CONFIGURATION" -ForegroundColor Green -BackgroundColor Black
-                    Write-Host "FinMiner - config Saved" -ForegroundColor red -BackgroundColor Black
+                    Write-Host "Nanominer - config Saved" -ForegroundColor red -BackgroundColor Black
 }
 if ($Restore -eq "y") {
     write-host "CONFIGURATION" -ForegroundColor Green -BackgroundColor Black
@@ -50,7 +50,7 @@ write-host ""
     Write-Host [2] "- Write CGMINER Configuration (GPU) - All "
     Write-Host [3] "- Write Moonlander 2 Configuration (USB) - SCRYPT "
     Write-Host [4] "- Write Moonlander 2 Configuration (USB) - SHA-256 "
-    Write-Host [5] "- Write FinMiner Configuration (Monero/Etherium) "
+    Write-Host [5] "- Write Nanominer Configuration (Monero/Etherium) "
     Write-Host [X] "- Config Error : Regen it"
     Write-Host [R] "- RETURN "
     Write-host ""
@@ -63,7 +63,7 @@ write-host ""
     2 { $Job = "GPU"}
     3 { $Job = "Moon"}
     4 { $Job = "2Pac"}
-    5 { $Job = "Finminer"}
+    5 { $Job = "Nanominer"}
     
     X { $Job = "X"}
     R { $Job = "r"}
@@ -74,7 +74,7 @@ write-host ""
         $writeGPU = "n"
         $Writemoon = "n"
         $Write2Pac = "n"
-        $WriteFinminer = "n"
+        $WriteNanominer = "n"
         $Restore = "n"
 
         Write-Host ""
@@ -153,7 +153,7 @@ write-host ""
         $writeGPU ="y"
         $Writemoon ="n"
         $Write2Pac = "n"
-        $WriteFinminer ="n"
+        $WriteNanominer ="n"
         $Restore = "n"
                 }
 
@@ -209,7 +209,7 @@ write-host ""
                     $writeGPU ="n"
                     $Writemoon ="y"
                     $Write2Pac = "n"
-                    $WriteFinminer ="n"
+                    $WriteNanominer ="n"
                     $Restore = "n"
                 }
 
@@ -253,37 +253,37 @@ write-host ""
                     $writeGPU ="n"
                     $Writemoon ="n"
                     $Write2Pac = "y"
-                    $WriteFinminer ="n"
+                    $WriteNanominer ="n"
                     $Restore = "n"
                             }
             
 
-                if ($Job -eq "Finminer")   {
+                if ($Job -eq "Nanominer")   {
                     Write-Host ""
-                    write-host "Writing FinMiner Config"           
+                    write-host "Writing Nanominer Config"           
                     Write-Host ""
 
-                    if (-not (Test-Path -Path ".\Soft\FinMiner-windows-2.4.7")) {
-                        Write-host "Finminer is not installed"
+                    if (-not (Test-Path -Path ".\Soft\nanominer-windows-1.1.0")) {
+                        Write-host "Nanominer is not installed"
                         Write-host "Please install it before" -foregroundColor Magenta -BackgroundColor Black 
                         start-Sleep -s 3
                         exit
                     }
 
-                    if (-not (Test-Path -Path ".\Soft\FinMiner-windows-2.4.7\config.ini")) {
-                        Copy-Item -Path ".\XMR_config.ini" -Destination ".\Soft\FinMiner-windows-2.4.7\"
-                        Rename-Item -Path ".\Soft\FinMiner-windows-2.4.7\XMR_config.ini" -NewName "config.ini"
+                    if (-not (Test-Path -Path ".\Soft\nanominer-windows-1.1.0\config.ini")) {
+                        Copy-Item -Path ".\XMR_config.ini" -Destination ".\Soft\nanominer-windows-1.1.0\"
+                        Rename-Item -Path ".\Soft\nanominer-windows-1.1.0\XMR_config.ini" -NewName "config.ini"
                     } else {
-                            remove-item .\Soft\FinMiner-windows-2.4.7\config.ini
-                            Copy-Item -Path ".\Config\XMR_config.ini" -Destination ".\Soft\FinMiner-windows-2.4.7\"
-                            Rename-Item -Path ".\Soft\FinMiner-windows-2.4.7\XMR_config.ini" -NewName "config.ini"    
+                            remove-item .\Soft\nanominer-windows-1.1.0\config.ini
+                            Copy-Item -Path ".\Config\XMR_config.ini" -Destination ".\Soft\nanominer-windows-1.1.0\"
+                            Rename-Item -Path ".\Soft\nanominer-windows-1.1.0\XMR_config.ini" -NewName "config.ini"    
                         }
 
                     $writeCPU ="n"
                     $writeGPU ="n"
                     $Writemoon ="n"
                     $Write2Pac = "n"
-                    $WriteFinminer ="y"
+                    $WriteNanominer ="y"
                     $Restore = "n"
                             }
 
@@ -322,7 +322,7 @@ write-host ""
                     $writeGPU ="n"
                     $Writemoon ="n"
                     $Write2Pac = "n"
-                    $WriteFinminer ="n"
+                    $WriteNanominer ="n"
                     $Restore = "y"
                 }
 

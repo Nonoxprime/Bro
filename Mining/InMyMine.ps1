@@ -72,7 +72,7 @@ Write-Host [5]" - Start CPU Mining (CPUminer)"
 Write-Host [6]" - Start GPU Mining (CGminer)"
 Write-Host [7]" - Start Moonlander Mining (BFGminer Moonlander 2 Edition)"
 Write-Host [8]" - Start 2Pac Mining (CGminer 2Pac Edition)"
-Write-Host [9]" - Monero Mining (Finminer)"
+Write-Host [9]" - Monero Mining (Nanominer)"
 
 Write-Host [Q] - "Quit" 
 Write-Host ""
@@ -98,7 +98,7 @@ switch ( $Choix )
     6 { $Action = "StartGPU"}
     7 { $Action = "Moonlander"}
     8 { $Action = "2Pac"}
-    9 { $Action = "FinMiner"}
+    9 { $Action = "Nanominer"}
     0 { $Action = "Donation"}
 
     Q { $Action = "Quit"}
@@ -181,11 +181,11 @@ if ($Action -eq "2Pac"){
     start-process -filepath .\Config\_Start_CGMINER_Gekko2Pac.bat
 }
 
-if ($Action -eq "FinMiner"){
-    write-host "Start FinMiner Job"
+if ($Action -eq "Nanominer"){
+    write-host "Start Nanominer Job"
     Write-Host ""
-    cd .\Soft\FinMiner-windows-2.4.7\
-    Start-Process .\finminer.exe
+    cd .\Soft\nanominer-windows-1.1.0\
+    Start-Process .\nanominer.exe
     cd ..
     cd ..
 }

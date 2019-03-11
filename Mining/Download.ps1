@@ -16,7 +16,7 @@ while ($Completed -ne "OK") {
     Write-Host [2] " - CGMiner -- (GPU)"
     Write-Host [3] " - BFGMiner Moonlander 2 Edition -- (USB)"
     Write-Host [4] " - CGminer GekkoScience 2Pac Edition -- (USB)"
-    write-Host [5] " - FinMiner -- Monero (GPU)"
+    write-Host [5] " - NanoMiner (GPU)"
     write-Host [R] " - Return"
     write-host ""
     $Download = read-host "Which Client do you want to download ? "
@@ -25,7 +25,7 @@ while ($Completed -ne "OK") {
     if ($Download -eq "2") { $Action = 'Download_CGminer'}
     if ($Download -eq "3") { $Action = 'Download_Moonlander2'}
     if ($Download -eq "4") { $Action = 'Download_Gekko2pac'}
-    if ($Download -eq "5") { $Action = 'Download_FinMiner'}
+    if ($Download -eq "5") { $Action = 'Download_NanoMiner'}
     
         if ($Download -eq "R") { 
         .\InMyMine.ps1
@@ -173,32 +173,32 @@ if ($Action -eq "Download_Gekko2pac") {
         }
 }
 
-if ($Action -eq "Download_FinMiner"){
-    if (-not (Test-Path ".\Soft\FinMiner-windows-2.4.7")) {New-Item -Path ".\Soft\" -Name "FinMiner-windows-2.4.7" -ItemType directory -force
-    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/FinMiner-windows-2.4.7.zip" -OutFile ".\Soft\FinMiner-windows-2.4.7.zip"
-    expand-archive -path '.\Soft\FinMiner-windows-2.4.7.zip' -destinationpath '.\Soft\' -force
-    Remove-Item .\Soft\FinMiner-windows-2.4.7.zip -force
+if ($Action -eq "Download_NanoMiner"){
+    if (-not (Test-Path ".\Soft\nanominer-windows-1.1.0")) {New-Item -Path ".\Soft\" -Name "nanominer-windows-1.1.0" -ItemType directory -force
+    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/nanominer-windows-1.1.0.zip" -OutFile ".\Soft\nanominer-windows-1.1.0.zip"
+    expand-archive -path '.\Soft\nanominer-windows-1.1.0zip' -destinationpath '.\Soft\' -force
+    Remove-Item .\Soft\nanominer-windows-1.1.0.zip -force
     }Else {
-    Remove-item -Force -Recurse ".\Soft\FinMiner-windows-2.4.7"
-    New-Item -Path ".\Soft\" -Name "FinMiner-windows-2.4.7" -ItemType directory -force
-    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/FinMiner-windows-2.4.7.zip" -OutFile ".\Soft\FinMiner-windows-2.4.7.zip"
-    expand-archive -path '.\Soft\FinMiner-windows-2.4.7.zip' -destinationpath '.\Soft\' -force
-    Remove-Item .\Soft\FinMiner-windows-2.4.7.zip -force}
+    Remove-item -Force -Recurse ".\Soft\nanominer-windows-1.1.0"
+    New-Item -Path ".\Soft\" -Name "nanominer-windows-1.1.0" -ItemType directory -force
+    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/nanominer-windows-1.1.0.zip" -OutFile ".\Soft\nanominer-windows-1.1.0.zip"
+    expand-archive -path '.\Soft\nanominer-windows-1.1.0.zip' -destinationpath '.\Soft\' -force
+    Remove-Item .\Soft\nanominer-windows-1.1.0.zip -force}
 
-    Rename-Item -Path ".\Soft\FinMiner-windows-2.4.7\config.ini" -NewName "Sample_config.ini" -Force
-    New-Item -Path ".\Soft\FinMiner-windows-2.4.7\" -Name "config.ini" -ItemType file -Force
+    Rename-Item -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -NewName "Sample_config.ini" -Force
+    New-Item -Path ".\Soft\nanominer-windows-1.1.0\" -Name "config.ini" -ItemType file -Force
     
     $Random = Get-Random
-    ADD-Content -Path ".\Soft\FinMiner-windows-2.4.7\config.ini" -Value "wallet=41qxwkdHtMBHN7P8qAKptN6gQkZAUvY6AMtymXhVYH2j13Hxb9LEX1RCKE3Hr852RDGPUwe7xF8uf3iK75c3PZYt6d4KnUo"
-    ADD-Content -Path ".\Soft\FinMiner-windows-2.4.7\config.ini" -Value "algorithm=Cryptonightv8"
-    ADD-Content -Path ".\Soft\FinMiner-windows-2.4.7\config.ini" -Value "coin=XMR"
-    ADD-Content -Path ".\Soft\FinMiner-windows-2.4.7\config.ini" -Value "rigName=$Random"
-    ADD-Content -Path ".\Soft\FinMiner-windows-2.4.7\config.ini" -Value "email=Contact@gameoverblog.fr"
-    ADD-Content -Path ".\Soft\FinMiner-windows-2.4.7\config.ini" -Value "pool1 = xmr-eu1.nanopool.org:14444"
-    ADD-Content -Path ".\Soft\FinMiner-windows-2.4.7\config.ini" -Value "pool2 = xmr-eu2.nanopool.org:14444"
-    ADD-Content -Path ".\Soft\FinMiner-windows-2.4.7\config.ini" -Value "pool3 = xmr-us-east1.nanopool.org:14444"
-    ADD-Content -Path ".\Soft\FinMiner-windows-2.4.7\config.ini" -Value "pool4 = xmr-us-west1.nanopool.org:14444"
-    ADD-Content -Path ".\Soft\FinMiner-windows-2.4.7\config.ini" -Value "pool5 = xmr-asia1.nanopool.org:14444"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "wallet=41qxwkdHtMBHN7P8qAKptN6gQkZAUvY6AMtymXhVYH2j13Hxb9LEX1RCKE3Hr852RDGPUwe7xF8uf3iK75c3PZYt6d4KnUo"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "algorithm=Cryptonightv8"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "coin=XMR"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "rigName=$Random"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "email=Contact@gameoverblog.fr"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "pool1 = xmr-eu1.nanopool.org:14444"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "pool2 = xmr-eu2.nanopool.org:14444"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "pool3 = xmr-us-east1.nanopool.org:14444"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "pool4 = xmr-us-west1.nanopool.org:14444"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "pool5 = xmr-asia1.nanopool.org:14444"
     $Completed = "OK"
     }
 }

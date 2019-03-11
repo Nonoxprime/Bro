@@ -82,12 +82,12 @@ else {
     $Moon = "MoonLander 2 Scrypt : Ready to mine with your Moonlander"
 }
 
-### Check FinMiner XMR / ETH ###
-if (-not (Test-Path ".\Soft\FinMiner-windows-2.4.7\Finminer.exe")) {
-    $FinMiner = "FinMiner : Missing Folder."
+### Check Nanominer XMR / ETH ###
+if (-not (Test-Path ".\Soft\nanominer-windows-1.1.0\nanominer.exe")) {
+    $Nanominer = "Nanominer : Missing Folder."
 }
 else {
-    $FinMiner = "FinMiner : Ready to mine Monero / Etherium"
+    $Nanominer = "Nanominer : Ready to mine Monero / Etherium"
 }
 
 
@@ -108,7 +108,7 @@ ADD-content -path $Local -value "Your Miner"
 ADD-content -path $Local -value "$CPUMiner"
 ADD-content -path $Local -value "$CGMiner"
 ADD-content -path $Local -value "$Moon"
-ADD-content -path $Local -value "$FinMiner"
+ADD-content -path $Local -value "$Nanominer"
 ADD-content -path $Local -value "-----------------------------------------------"
 #########
 
@@ -136,8 +136,8 @@ Else {Write-Host "$CGMiner" -foregroundcolor Green -backgroundcolor black}
 if ($Moon -eq "MoonLander 2 Scrypt : Missing Drivers and BFGMiner") {Write-Host "$Moon" -foregroundcolor Red -backgroundcolor black}
 Else {Write-Host "$Moon" -foregroundcolor Green -backgroundcolor black}
 
-if ($FinMiner -eq "FinMiner : Missing Folder.") {Write-Host "$FinMiner" -foregroundcolor Red -backgroundcolor black}
-Else {Write-Host "$FinMiner" -foregroundcolor Green -backgroundcolor black}
+if ($Nanominer -eq "Nanominer : Missing Folder.") {Write-Host "$Nanominer" -foregroundcolor Red -backgroundcolor black}
+Else {Write-Host "$Nanominer" -foregroundcolor Green -backgroundcolor black}
 
 write-host "----------------------------------------------------------------------"
 write.exe .\Config\$hostname.log
