@@ -174,31 +174,31 @@ if ($Action -eq "Download_Gekko2pac") {
 }
 
 if ($Action -eq "Download_NanoMiner"){
-    if (-not (Test-Path ".\Soft\nanominer-windows-1.1.0")) {New-Item -Path ".\Soft\" -Name "nanominer-windows-1.1.0" -ItemType directory -force
-    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/nanominer-windows-1.1.0.zip" -OutFile ".\Soft\nanominer-windows-1.1.0.zip"
-    expand-archive -path '.\Soft\nanominer-windows-1.1.0zip' -destinationpath '.\Soft\' -force
-    Remove-Item .\Soft\nanominer-windows-1.1.0.zip -force
+    if (-not (Test-Path ".\Soft\nanominer-windows-1.1.1")) {New-Item -Path ".\Soft\" -Name "nanominer-windows-1.1.1" -ItemType directory -force
+    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/nanominer-windows-1.1.1.zip" -OutFile ".\Soft\nanominer-windows-1.1.1.zip"
+    expand-archive -path '.\Soft\nanominer-windows-1.1.1.zip' -destinationpath '.\Soft\' -force
+    Remove-Item .\Soft\nanominer-windows-1.1.1.zip -force
     }Else {
-    Remove-item -Force -Recurse ".\Soft\nanominer-windows-1.1.0"
-    New-Item -Path ".\Soft\" -Name "nanominer-windows-1.1.0" -ItemType directory -force
-    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/nanominer-windows-1.1.0.zip" -OutFile ".\Soft\nanominer-windows-1.1.0.zip"
-    expand-archive -path '.\Soft\nanominer-windows-1.1.0.zip' -destinationpath '.\Soft\' -force
-    Remove-Item .\Soft\nanominer-windows-1.1.0.zip -force}
+    Remove-item -Force -Recurse ".\Soft\nanominer-windows-1.1.1"
+    New-Item -Path ".\Soft\" -Name "nanominer-windows-1.1.1" -ItemType directory -force
+    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/nanominer-windows-1.1.1.zip" -OutFile ".\Soft\nanominer-windows-1.1.1.zip"
+    expand-archive -path '.\Soft\nanominer-windows-1.1.1.zip' -destinationpath '.\Soft\' -force
+    Remove-Item .\Soft\nanominer-windows-1.1.1.zip -force}
 
-    Rename-Item -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -NewName "Sample_config.ini" -Force
-    New-Item -Path ".\Soft\nanominer-windows-1.1.0\" -Name "config.ini" -ItemType file -Force
+    Rename-Item -Path ".\Soft\nanominer-windows-1.1.1\config.ini" -NewName "Sample_config.ini" -Force
+    New-Item -Path ".\Soft\nanominer-windows-1.1.1\" -Name "config.ini" -ItemType file -Force
     
     $Random = Get-Random
-    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "wallet=41qxwkdHtMBHN7P8qAKptN6gQkZAUvY6AMtymXhVYH2j13Hxb9LEX1RCKE3Hr852RDGPUwe7xF8uf3iK75c3PZYt6d4KnUo"
-    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "algorithm=Cryptonightv8"
-    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "coin=XMR"
-    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "rigName=$Random"
-    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "email=Contact@gameoverblog.fr"
-    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "pool1 = xmr-eu1.nanopool.org:14444"
-    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "pool2 = xmr-eu2.nanopool.org:14444"
-    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "pool3 = xmr-us-east1.nanopool.org:14444"
-    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "pool4 = xmr-us-west1.nanopool.org:14444"
-    ADD-Content -Path ".\Soft\nanominer-windows-1.1.0\config.ini" -Value "pool5 = xmr-asia1.nanopool.org:14444"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.1\config.ini" -Value "wallet=41qxwkdHtMBHN7P8qAKptN6gQkZAUvY6AMtymXhVYH2j13Hxb9LEX1RCKE3Hr852RDGPUwe7xF8uf3iK75c3PZYt6d4KnUo"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.1\config.ini" -Value "algorithm=Cryptonightv8"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.1\config.ini" -Value "coin=XMR"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.1\config.ini" -Value "rigName=$Random"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.1\config.ini" -Value "email=Contact@gameoverblog.fr"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.1\config.ini" -Value "pool1 = xmr-eu1.nanopool.org:14444"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.1\config.ini" -Value "pool2 = xmr-eu2.nanopool.org:14444"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.1\config.ini" -Value "pool3 = xmr-us-east1.nanopool.org:14444"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.1\config.ini" -Value "pool4 = xmr-us-west1.nanopool.org:14444"
+    ADD-Content -Path ".\Soft\nanominer-windows-1.1.1\config.ini" -Value "pool5 = xmr-asia1.nanopool.org:14444"
     $Completed = "OK"
     }
 }
