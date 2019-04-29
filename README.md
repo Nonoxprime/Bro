@@ -83,6 +83,13 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
+<p>29/04/2019 - 1.0429.19</p>
+<!-- /wp:paragraph -->
+<!-- wp:list -->
+<ul><li>Update Nanominer 1.2.4</li>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
 <p>11/03/2019 - 1.0311.19</p>
 <!-- /wp:paragraph -->
 <!-- wp:list -->
