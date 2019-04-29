@@ -184,7 +184,7 @@ if ($Action -eq "2Pac"){
 if ($Action -eq "Nanominer"){
     write-host "Start Nanominer Job"
     Write-Host ""
-    cd .\Soft\nanominer-windows-1.1.0\
+    cd .\Soft\nanominer-windows-1.2.4\
     Start-Process .\nanominer.exe
     cd ..
     cd ..
