@@ -2,8 +2,11 @@
 
 ### By Nox Prime for Gameoverblog.fr ###
 ### Help me for a coffee/Vodka ... Both :) ?: 
-### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
-### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
+### Vodka or Coffee Donation ###
+### LTC : LP9QYLNG7HEXFPawhoPJqJizFvXkyeuRUb
+### BTC : 3NZk6iirCUGe8WPtXTUWGZudni2CC2BjCu
+### XMR : 4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CWEwrVU97D5U8RrdECm
+
 ### Found News on 
 ## Site : https://Gameoverblog.fr
 ## GITHUB : https://github.com/Nonoxprime/Bro
@@ -46,11 +49,11 @@ if ($Restore -eq "y") {
 
 write-host ""
     write-host "Write Config" -ForegroundColor Green -BackgroundColor Black
-    Write-Host [1] "- Write CPUMINER Configuration (CPU) -All "
-    Write-Host [2] "- Write CGMINER Configuration (GPU) - All "
-    Write-Host [3] "- Write Moonlander 2 Configuration (USB) - SCRYPT "
-    Write-Host [4] "- Write Moonlander 2 Configuration (USB) - SHA-256 "
-    Write-Host [5] "- Write Nanominer Configuration (Monero/Etherium) "
+    Write-Host [1] "- Write CPUMINER Configuration (CPU)"
+    Write-Host [2] "- Write CGMINER Configuration (GPU)"
+    Write-Host [3] "- Write Moonlander 2 Configuration (USB)"
+    Write-Host [4] "- Write Gekko2Pac Configuration (USB)"
+    Write-Host [5] "- Write Nanominer Configuration"
     Write-Host [X] "- Config Error : Regen it"
     Write-Host [R] "- RETURN "
     Write-host ""
@@ -263,20 +266,20 @@ write-host ""
                     write-host "Writing Nanominer Config"           
                     Write-Host ""
 
-                    if (-not (Test-Path -Path ".\Soft\nanominer-windows-1.1.0")) {
+                    if (-not (Test-Path -Path ".\Soft\nanominer-1.2.4")) {
                         Write-host "Nanominer is not installed"
                         Write-host "Please install it before" -foregroundColor Magenta -BackgroundColor Black 
                         start-Sleep -s 3
                         exit
                     }
 
-                    if (-not (Test-Path -Path ".\Soft\nanominer-windows-1.1.0\config.ini")) {
-                        Copy-Item -Path ".\XMR_config.ini" -Destination ".\Soft\nanominer-windows-1.1.0\"
-                        Rename-Item -Path ".\Soft\nanominer-windows-1.1.0\XMR_config.ini" -NewName "config.ini"
+                    if (-not (Test-Path -Path ".\Soft\nanominer-1.2.4\config.ini")) {
+                        Copy-Item -Path ".\XMR_config.ini" -Destination ".\Soft\nanominer-1.2.4\"
+                        Rename-Item -Path ".\Soft\nanominer-1.2.4\XMR_config.ini" -NewName "config.ini"
                     } else {
-                            remove-item .\Soft\nanominer-windows-1.1.0\config.ini
-                            Copy-Item -Path ".\Config\XMR_config.ini" -Destination ".\Soft\nanominer-windows-1.1.0\"
-                            Rename-Item -Path ".\Soft\nanominer-windows-1.1.0\XMR_config.ini" -NewName "config.ini"    
+                            remove-item .\Soft\nanominer-1.2.4\config.ini
+                            Copy-Item -Path ".\Config\XMR_config.ini" -Destination ".\Soft\nanominer-1.2.4\"
+                            Rename-Item -Path ".\Soft\nanominer-1.2.4\XMR_config.ini" -NewName "config.ini"    
                         }
 
                     $writeCPU ="n"
@@ -294,7 +297,7 @@ write-host ""
                     Remove-item ".\Config\Userconfig.conf" -Force
                     New-Item -Path ".\Config\" -Name "Userconfig.conf" -ItemType file -force
                     ADD-Content -Path ".\Config\Userconfig.conf" -Value "[Config File]"
-                    ADD-Content -Path ".\Config\Userconfig.conf" -Value "1.0113.19"
+                    ADD-Content -Path ".\Config\Userconfig.conf" -Value "1.45.19"
                     ADD-Content -Path ".\Config\Userconfig.conf" -Value "[Mining Pool]"
                     ADD-Content -Path ".\Config\Userconfig.conf" -Value "stratum+tcp://litecoinpool.org:3333"
                     ADD-Content -Path ".\Config\Userconfig.conf" -Value "[User.worker]"
@@ -307,7 +310,7 @@ write-host ""
                     Remove-item ".\Config\XMR_config.ini" -Force
                     New-Item -Path ".\Config\" -Name "XMR_config.ini" -ItemType file -Force
                     $Random = Get-Random
-                    ADD-Content -Path ".\Config\XMR_config.ini" -Value "wallet=41qxwkdHtMBHN7P8qAKptN6gQkZAUvY6AMtymXhVYH2j13Hxb9LEX1RCKE3Hr852RDGPUwe7xF8uf3iK75c3PZYt6d4KnUo"
+                    ADD-Content -Path ".\Config\XMR_config.ini" -Value "wallet=4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CWEwrVU97D5U8RrdECm"
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "algorithm=Cryptonightv8"
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "coin=XMR"
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "rigName=$Random"
@@ -336,5 +339,6 @@ write-host ""
                     .\InMyMine.ps1
                 exit}
 }
+
 .\InMyMine.ps1
 exit

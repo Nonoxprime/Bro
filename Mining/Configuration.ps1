@@ -2,8 +2,10 @@
 
 ### By Nox Prime for Gameoverblog.fr ###
 ### Help me for a coffee/Vodka ... Both :) ?: 
-### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
-### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
+### Vodka or Coffee Donation ###
+### LTC : LP9QYLNG7HEXFPawhoPJqJizFvXkyeuRUb
+### BTC : 3NZk6iirCUGe8WPtXTUWGZudni2CC2BjCu
+### XMR : 4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CWEwrVU97D5U8RrdECm
 ### Found News on 
 ## Site : https://Gameoverblog.fr
 ## GITHUB : https://github.com/Nonoxprime/Bro
@@ -21,7 +23,7 @@ $Completed = "KO"
 while ($Completed -ne "OK") {
 
     write-host "POOL CONFIGURATION" -ForegroundColor green -BackgroundColor Black
-    write-host "What Crytocurrencies you want to mine ? " 
+    write-host ""
     Write-host [1] "BTC Pool - BitCoin "-ForegroundColor yellow -BackgroundColor Black
     Write-host [2] "LTC Pool - LiteCoin "-ForegroundColor red -BackgroundColor Black
     Write-host [3] "XMR Pool - Monero " -ForegroundColor magenta -BackgroundColor Black
@@ -226,5 +228,6 @@ if ($pool -ne "Set for Monero Mining - See XMR-Config.ini") {
 if ($Action -eq "Generate") {
     .\Generate.ps1
     exit}
+
 .\InMyMine.ps1
 exit

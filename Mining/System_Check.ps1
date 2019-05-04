@@ -1,9 +1,11 @@
 ### Systeme Check ###
 
 ### By Nox Prime for Gameoverblog.fr ###
-### Help me for a coffee/Vodka ... Both :) ?: 
-### LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB
-### BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73
+
+### Vodka or Coffee Donation ###
+### LTC : LP9QYLNG7HEXFPawhoPJqJizFvXkyeuRUb
+### BTC : 3NZk6iirCUGe8WPtXTUWGZudni2CC2BjCu
+### XMR : 4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CWEwrVU97D5U8RrdECm
 ### Found News on 
 ## Site : https://Gameoverblog.fr
 ## GITHUB : https://github.com/Nonoxprime/Bro
@@ -83,7 +85,7 @@ else {
 }
 
 ### Check Nanominer XMR / ETH ###
-if (-not (Test-Path ".\Soft\nanominer-windows-1.1.0\nanominer.exe")) {
+if (-not (Test-Path ".\Soft\Nanominer-1.2.4\nanominer.exe")) {
     $Nanominer = "Nanominer : Missing Folder."
 }
 else {
