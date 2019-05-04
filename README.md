@@ -1,62 +1,28 @@
-<!-- wp:heading -->
-<h2>GitHub Nox Prime for Gameoverblog.fr</h2>
-<!-- /wp:heading -->
+### By Nox Prime for Gameoverblog.fr ###
+### 1.45.19 ###
 
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph -->
+### If you want to Help me with coffee/Vodka ... or Both :) ?: 
 
-<!-- wp:heading {"level":3} -->
-<h3>Informations </h3>
-<!-- /wp:heading -->
+### Vodka or Coffee Donation ###
+### LTC : LP9QYLNG7HEXFPawhoPJqJizFvXkyeuRUb
+### BTC : 3NZk6iirCUGe8WPtXTUWGZudni2CC2BjCu
+### XMR : 4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CWEwrVU97D5U8RrdECm
 
-<!-- wp:paragraph -->
-<p>If you want to support me with a coffee/Vodka … or Both :) ?</p>
-<!-- /wp:paragraph -->
+### Found News on 
+## Site : https://Gameoverblog.fr
+## GITHUB : https://github.com/Nonoxprime/Bro
+### Thanks for your help, enjoy this script
 
-<!-- wp:paragraph -->
-<p>you can do that with cryptocurrency</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul><li>LTC : MQQVGFmm5poyeQLxLycmDLvNGCtsXXUTDB</li><li>BTC : 34Zg1fvPjxhNTSsWs9KJMX7iBMR85dHu73</li></ul>
-<!-- /wp:list -->
-
-<!-- wp:heading {"level":3} -->
-<h3></h3>
-<!-- /wp:heading -->
-
-<!-- wp:heading {"level":3} -->
-<h3>You can Found News </h3>
-<!-- /wp:heading -->
-
-<!-- wp:list -->
-<ul><li>Site : Gameoverblog.fr</li><li>Github : https://github.com/Nonoxprime/Bro</li></ul>
-<!-- /wp:list -->
-
-<!-- wp:paragraph {"align":"center"} -->
-<p style="text-align:center">Thanks for your help, enjoy</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":3} -->
-<h3>Applications</h3>
-<!-- /wp:heading -->
-
-<!-- wp:heading {"level":4} -->
-<h4>Mining.ps1</h4>
-<!-- /wp:heading -->
-
-<!-- wp:list -->
-<ul><li>### HOW I CAN RUN THIS SCRIPT ###</li>
-  <li>Create a folder named Nox_Script</li>
-  <li>Copy Mining.ps1 inside this folder</li>
-  <li>Open Powershell</li>
-  <li>Use this command to go in your folder : cd C:/Nox_Script</li>
-  <li>Run this : Set-ExecutionPolicy Bypass -Scope Process</li>
-  <li>Validate script execution with O (Oui) or Y (Yes)</li>
-  <li>Then after run this commande : .\Mining.Ps1</li>
- </ul>
-<!-- /wp:list -->
+### HOW I CAN RUN THIS SCRIPT ###
+<#
+Create a folder named Nox_Script
+Copy scripts inside this folder
+Open Powershell
+Use this command to go in your folder : cd C:/Nox_Script
+Run this : Set-ExecutionPolicy Bypass -Scope Process
+Validate script execution with O (Oui) or Y (Yes)
+Enjoy
+#>
 
 <!-- wp:heading {"level":4} -->
 <h4>Powershell</h4>
