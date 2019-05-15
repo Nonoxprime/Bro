@@ -13,7 +13,6 @@
 ### Thanks for your help, enjoy this script
 
 ### Variables ###
-$Version = Get-Content -Path .\Config\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 1
 $PoolMining = Get-Content -Path .\Config\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 3
 $PoolUser = Get-Content -Path .\Config\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 5
 $PoolPass = Get-Content -Path .\Config\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 7
@@ -53,8 +52,8 @@ write-host ""
     Write-Host [2] "- Write CGMINER Configuration (GPU)"
     Write-Host [3] "- Write Moonlander 2 Configuration (USB)"
     Write-Host [4] "- Write Gekko2Pac Configuration (USB)"
-    Write-Host [5] "- Write Nanominer Configuration"
-    Write-Host [X] "- Config Error : Regen it"
+    Write-Host [5] "- Write Monero Miner Configuration"
+    Write-Host [6] "- Write Etherium Miner Configuration"
     Write-Host [R] "- RETURN "
     Write-host ""
     
@@ -66,8 +65,9 @@ write-host ""
     2 { $Job = "GPU"}
     3 { $Job = "Moon"}
     4 { $Job = "2Pac"}
-    5 { $Job = "Nanominer"}
-    
+    5 { $Job = "Monero"}
+    6 { $Job = "Etherium"}
+
     X { $Job = "X"}
     R { $Job = "r"}
 }
@@ -261,7 +261,7 @@ write-host ""
                             }
             
 
-                if ($Job -eq "Nanominer")   {
+                if ($Job -eq "Monero")   {
                     Write-Host ""
                     write-host "Writing Nanominer Config"           
                     Write-Host ""
@@ -289,6 +289,35 @@ write-host ""
                     $WriteNanominer ="y"
                     $Restore = "n"
                             }
+
+                if ($Job -eq "Etherium")   {
+                    Write-Host ""
+                    write-host "Writing Nanominer Config"           
+                    Write-Host ""
+            
+                    if (-not (Test-Path -Path ".\Soft\nanominer-1.2.4")) {
+                        Write-host "Nanominer is not installed"
+                        Write-host "Please install it before" -foregroundColor Magenta -BackgroundColor Black 
+                        start-Sleep -s 3
+                        exit
+                                }
+            
+                    if (-not (Test-Path -Path ".\Soft\nanominer-1.2.4\config.ini")) {
+                        Copy-Item -Path ".\ETH_config.ini" -Destination ".\Soft\nanominer-1.2.4\"
+                        Rename-Item -Path ".\Soft\nanominer-1.2.4\ETH_config.ini" -NewName "config.ini"
+                        } else {
+                                remove-item .\Soft\nanominer-1.2.4\config.ini
+                                Copy-Item -Path ".\Config\ETH_config.ini" -Destination ".\Soft\nanominer-1.2.4\"
+                                Rename-Item -Path ".\Soft\nanominer-1.2.4\ETH_config.ini" -NewName "config.ini"    
+                                }
+            
+                                $writeCPU ="n"
+                                $writeGPU ="n"
+                                $Writemoon ="n"
+                                $Write2Pac = "n"
+                                $WriteNanominer ="y"
+                                $Restore = "n"
+                                        }
 
                 if ($job -eq "X") {
 
@@ -320,7 +349,24 @@ write-host ""
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool3 = xmr-us-east1.nanopool.org:14444"
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool4 = xmr-us-west1.nanopool.org:14444"
                     ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool5 = xmr-asia1.nanopool.org:14444"
-                
+                    write-host ""
+
+                    Write-host "ETH_Config.ini Default" -ForegroundColor red -BackgroundColor Black
+                    Remove-item ".\Config\ETH_config.ini" -Force
+                    $Random = Get-Random
+                    New-Item -Path ".\Config\" -Name "ETH_config.ini" -ItemType file -Force
+                    ADD-Content -Path ".\Config\ETH_config.ini" -Value "wallet=0xDD11fa6e1E2A082076045d6b85a3A0A1cdBfA7C7"
+                    ADD-Content -Path ".\Config\ETH_config.ini" -Value "algorithm=Ethash"
+                    ADD-Content -Path ".\Config\ETH_config.ini" -Value "coin=ETH"
+                    ADD-Content -Path ".\Config\ETH_config.ini" -Value "rigName=$Random"
+                    ADD-Content -Path ".\Config\ETH_config.ini" -Value "email=Contact@gameoverblog.fr"
+                    ADD-Content -Path ".\Config\ETH_config.ini" -Value "pool1 = eth-eu1.nanopool.org:9999"
+                    ADD-Content -Path ".\Config\ETH_config.ini" -Value "pool2 = eth-eu2.nanopool.org:9999"
+                    ADD-Content -Path ".\Config\ETH_config.ini" -Value "pool3 = eth-us-east1.nanopool.org:9999"
+                    ADD-Content -Path ".\Config\ETH_config.ini" -Value "pool4 = eth-us-west1.nanopool.org:9999"
+                    ADD-Content -Path ".\Config\ETH_config.ini" -Value "pool5 = eth-asia1.nanopool.org:9999"
+                    write-host ""
+
                     $writeCPU ="n"
                     $writeGPU ="n"
                     $Writemoon ="n"

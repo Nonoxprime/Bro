@@ -10,14 +10,13 @@
 Download and configure CPU Miner#>
 
 if (-not (Test-Path ".\Soft\CPUminer2.5.0")) {New-Item -Path ".\Soft\" -Name "CPUminer2.5.0" -ItemType directory -force
-    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/Cpuminer-2.5.0.zip" -OutFile ".\Soft\CPUminer2.5.0\Cpuminer.zip"
-    expand-archive -path '.\Soft\CPUminer2.5.0\Cpuminer.zip' -destinationpath '.\Soft\CPUminer2.5.0\'
-    Remove-Item .\Soft\CPUminer2.5.0\Cpuminer.zip -Force
+    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/Cpuminer-2.5.0.zip" -OutFile ".\download\Cpuminer.zip"
+    expand-archive -path '.\Download\Cpuminer.zip' -destinationpath '.\Soft\CPUminer2.5.0\'
 }Else{
     Remove-Item -Force -Recurse ".\Soft\CPUminer2.5.0"
     New-Item -Path ".\Soft\" -Name "CPUminer2.5.0" -ItemType directory -force
-    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/Cpuminer-2.5.0.zip" -OutFile ".\Soft\CPUminer2.5.0\Cpuminer.zip"
-    expand-archive -path '.\Soft\CPUminer2.5.0\Cpuminer.zip' -destinationpath '.\Soft\CPUminer2.5.0\'
+    Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/Cpuminer-2.5.0.zip" -OutFile ".\Download\Cpuminer.zip"
+    expand-archive -path '.\Download\Cpuminer.zip' -destinationpath '.\Soft\CPUminer2.5.0\'
 }
 
 if (-not (Test-Path ".\Config\_Start_CPUMINER.bat")) {
@@ -33,5 +32,4 @@ if (-not (Test-Path ".\Config\_Start_CPUMINER.bat")) {
     ADD-content -path $Confsetup -value ".\Soft\CPUminer2.5.0\minerd.exe --url=stratum+tcp://litecoinpool.org:3333 --userpass=Nox81.guest:1"
     }
 
-#.\InMyMine.ps1
 exit

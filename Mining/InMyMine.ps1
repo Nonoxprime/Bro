@@ -1,89 +1,30 @@
-﻿### By Nox Prime for Gameoverblog.fr ###
-### 1.45.19 ###
-
-### If you want to Help me with coffee/Vodka ... or Both :) ?: 
-
-### Vodka or Coffee Donation ###
-### LTC : LP9QYLNG7HEXFPawhoPJqJizFvXkyeuRUb
-### BTC : 3NZk6iirCUGe8WPtXTUWGZudni2CC2BjCu
-### XMR : 4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CWEwrVU97D5U8RrdECm
-
-### Found News on 
-## Site : https://Gameoverblog.fr
-## GITHUB : https://github.com/Nonoxprime/Bro
-### Thanks for your help, enjoy this script
-
-### HOW I CAN RUN THIS SCRIPT ###
-<#
-Create a folder named Nox_Script
-Copy scripts inside this folder
-Open Powershell
-Use this command to go in your folder : cd C:/Nox_Script
-Run this : Set-ExecutionPolicy Bypass -Scope Process
-Validate script execution with O (Oui) or Y (Yes)
-Enjoy
-#>
-
-Set-ExecutionPolicy Bypass -Scope Process
-
-### Directory Creation ###
-if (-not (Test-Path ".\Config")) {New-Item -Path ".\" -Name "Config" -ItemType Directory -force}
-if (-not (Test-Path ".\Soft")) {New-Item -Path ".\" -Name "Soft" -ItemType Directory -force}
-
-### Default config Creation ###
-## Configuraiton for Litecoin
-if (-not (Test-Path ".\Config\Userconfig.conf")) {
-    New-Item -Path ".\Config\" -Name "Userconfig.conf" -ItemType file -force
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "[Config File]"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "1.45.19"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "[Mining Pool]"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "stratum+tcp://litecoinpool.org:3333"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "[User.worker]"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "Nox81.guest"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "[WorkerPassword]"
-    ADD-Content -Path ".\Config\Userconfig.conf" -Value "1"
-    write-host ""
-}
-
-##Configuration for Monero
-if (-not (Test-Path ".\Config\XMR_config.ini")) {
-New-Item -Path ".\Config\" -Name "XMR_config.ini" -ItemType file -Force
-$Random = Get-Random
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "wallet=4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CWEwrVU97D5U8RrdECm"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "algorithm=Cryptonightv8"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "coin=XMR"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "rigName=$Random"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "email=Contact@gameoverblog.fr"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool1 = xmr-eu1.nanopool.org:14444"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool2 = xmr-eu2.nanopool.org:14444"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool3 = xmr-us-east1.nanopool.org:14444"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool4 = xmr-us-west1.nanopool.org:14444"
-ADD-Content -Path ".\Config\XMR_config.ini" -Value "pool5 = xmr-asia1.nanopool.org:14444"}
-
-
-
+﻿Clear-Host
 
 while ($Start -ne "y"){
 
 Write-Host ""
 Write-Host " --- Mining ToolBag --- "
-Write-Host "Tool Version 1.45.19"
+Write-Host "Tool Version 1.515.19"
 Write-Host ""
 
 write-host "Menu" -ForegroundColor Green -BackgroundColor Black
 write-host [D] "Download Mining Client" -ForegroundColor Yellow -BackgroundColor Black
-Write-Host [S] "Setup and generate Config File"-ForegroundColor Yellow -BackgroundColor Black
+Write-Host [M] "Config"-ForegroundColor Yellow -BackgroundColor Black
 Write-Host [C] "Check Your System"-ForegroundColor Yellow -BackgroundColor Black
 Write-Host [0]" Donation (only 1hour CGminer For Dev)"
 Write-Host ""
-write-host "Work" -ForegroundColor Green -BackgroundColor Black
-Write-Host [5]" - Start CPU Mining (CPUminer)"
-Write-Host [6]" - Start GPU Mining (CGminer)"
-Write-Host [7]" - Start Moonlander Mining (BFGminer Moonlander 2 Edition)"
-Write-Host [8]" - Start 2Pac Mining (CGminer 2Pac Edition)"
-Write-Host [9]" - Monero Mining (Nanominer)"
-
-Write-Host [Q] - "Quit" 
+write-host "Rig Mining" -ForegroundColor Green -BackgroundColor Black
+Write-Host [1]" ZEC Mining"
+Write-Host [2]" LTC Mining"
+Write-Host [3]" BTC Mining"
+Write-Host [4]" XMR Mining"
+Write-Host [5]" ETH Mining"
+Write-Host ""
+write-host "Specific Hardware" -ForegroundColor Green -BackgroundColor Black
+Write-Host [8]" LTC Moonlander2"
+Write-Host [9]" BTC GekkoScience 2Pac"
+Write-Host ""
+Write-Host [Q] "Quit" 
 Write-Host ""
 
 if ($Donation -eq 3601) {
@@ -100,14 +41,17 @@ switch ( $Choix )
     D { $Action = "Download"}
     S { $Action = "Configuration"}
     C { $Action = "Check"}
-    A { $Action = "Automation"}
+    M { $Action = "Crypto"}
     
+    1 { $Action = "Zec"}
+    2 { $Action = "LTC"}
+    3 { $Action = "BTC"}
+    4 { $Action = "XMR"}
+    5 { $Action = "ETH"}
 
-    5 { $Action = "StartCPU"}
-    6 { $Action = "StartGPU"}
-    7 { $Action = "Moonlander"}
-    8 { $Action = "2Pac"}
-    9 { $Action = "Nanominer"}
+
+    8 { $Action = "Moonlander"}
+    9 { $Action = "2Pac"}
     0 { $Action = "Donation"}
 
     Q { $Action = "Quit"}
@@ -133,17 +77,29 @@ if ($Action -eq "Check") {
     .\System_Check.ps1
     exit}
 
+### Go To Crypto Script Config ###
+if ($Action -eq "Crypto"){
+    .\Crypto_Conf.ps1
+    exit}
+
+
 ### Start Work ###    
-if ($Action -eq "StartCPU"){
-    write-host "Start CPUminer Job"
+if ($Action -eq "Zec"){
+    write-host "Start Zecminer Job"
     Write-Host ""
-    start-process -filepath .\Config\_Start_CPUMINER.bat
+    start-process -filepath .\Config\ZEC_config.bat
 }
 
-if ($Action -eq "StartGPU"){
-    write-host "Start CGminer Job"
+if ($Action -eq "LTC"){
+    write-host "Start CPUminer Job"
     Write-Host ""
-    start-process -filepath .\Config\_Start_CGMINER.bat
+    start-process -filepath .\Config\LTC_Miner.bat
+}
+
+if ($Action -eq "BTC"){
+    write-host "Start Bitcoin Mining Job"
+    Write-Host ""
+    start-process -filepath .\Config\BTC_Config.bat
 }
 
 if ($Action -eq "MoonLander"){
@@ -158,14 +114,24 @@ if ($Action -eq "2Pac"){
     start-process -filepath .\Config\_Start_CGMINER_Gekko2Pac.bat
 }
 
-if ($Action -eq "Nanominer"){
-    write-host "Start Nanominer Job"
+if ($Action -eq "XMR"){
+    write-host "Start Monero Mining Job"
     Write-Host ""
-    cd .\Soft\nanominer-windows-1.2.4\
-    Start-Process .\nanominer.exe
-    cd ..
-    cd ..
+    remove-item .\Soft\nanominer-1.2.4\config.ini
+    Copy-Item -Path ".\Config\XMR_config.ini" -Destination ".\Soft\nanominer-1.2.4\"
+    Rename-Item -Path ".\Soft\nanominer-1.2.4\XMR_config.ini" -NewName "config.ini"
+    start-process -filepath .\Config\XMR_config.bat
 }
+
+if ($Action -eq "ETH"){
+    write-host "Start Etherium Mining Job"
+    Write-Host ""
+    remove-item .\Soft\nanominer-1.2.4\config.ini
+    Copy-Item -Path ".\Config\ETH_config.ini" -Destination ".\Soft\nanominer-1.2.4\"
+    Rename-Item -Path ".\Soft\nanominer-1.2.4\ETH_config.ini" -NewName "config.ini"
+    start-process -filepath .\Config\ETH_config.bat
+}
+
 
 if ($Action -eq "Quit"){exit}
 

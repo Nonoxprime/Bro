@@ -10,15 +10,13 @@
 Download and configure CGMiner#>
 
 if (-not (Test-Path ".\Soft\CGminer3.7.2")) {New-Item -Path ".\Soft\" -Name "CGminer3.7.2" -ItemType directory -force
-        Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/cgminer-3.7.2.zip" -OutFile ".\Soft\CGminer3.7.2\Cgminer.zip"
-        expand-archive -path '.\Soft\CGminer3.7.2\Cgminer.zip' -destinationpath '.\Soft\CGminer3.7.2\' -Force
-        Remove-Item .\Soft\CGminer3.7.2\Cgminer.zip -Force
+        Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/cgminer-3.7.2.zip" -OutFile ".\Download\Cgminer.zip"
+        expand-archive -path '.\Download\Cgminer.zip' -destinationpath '.\Soft\CGminer3.7.2\' -Force
     }else{
         remove-item ".\Soft\CGminer3.7.2\" -Force -Recurse
         New-Item -Path ".\Soft\" -Name "CGminer3.7.2" -ItemType directory -force
-        Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/cgminer-3.7.2.zip" -OutFile ".\Soft\CGminer3.7.2\Cgminer.zip"
-        expand-archive -path '.\Soft\CGminer3.7.2\Cgminer.zip' -destinationpath '.\Soft\CGminer3.7.2\' -Force
-        Remove-Item .\Soft\CGminer3.7.2\Cgminer.zip -Force
+        Invoke-WebRequest -Uri "https://gameoverblog.fr/Scripting/cgminer-3.7.2.zip" -OutFile ".\Download\Cgminer.zip"
+        expand-archive -path '.\Download\Cgminer.zip' -destinationpath '.\Soft\CGminer3.7.2\' -Force
         }
     
     if (-not (Test-Path ".\Config\_Start_CGMINER.bat")) {
@@ -36,5 +34,4 @@ if (-not (Test-Path ".\Soft\CGminer3.7.2")) {New-Item -Path ".\Soft\" -Name "CGm
         $Completed = "OK"
         }
 
-#.\InMyMine.ps1
 exit

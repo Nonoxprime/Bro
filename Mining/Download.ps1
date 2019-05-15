@@ -20,6 +20,8 @@ while ($Completed -ne "OK") {
     Write-Host [4] " - BFGMiner Moonlander 2 Edition -- (USB)"
     Write-Host [5] " - CGminer GekkoScience 2Pac Edition -- (USB)"
     
+    Write-Host [6] " - ZecMiner -- (Zcash)"
+    
     write-Host [R] " - Return"
     write-host ""
     $Download = read-host "Which Client do you want to install download ? "
@@ -31,7 +33,8 @@ while ($Completed -ne "OK") {
     if ($Download -eq "4") { $Action = 'Download_Moonlander2'}
     if ($Download -eq "5") { $Action = 'Download_Gekko2pac'}
     
-    
+    if ($Download -eq "6") { $Action = 'Download_ZecMiner'}
+
         if ($Download -eq "R") { 
         .\InMyMine.ps1
         exit}
@@ -59,4 +62,9 @@ if ($Action -eq "Download_Moonlander2") {
 if ($Action -eq "Download_Gekko2pac") {
     .\Gekko2Pac.ps1
     }
+
+if ($Action -eq "Download_ZecMiner") {
+    .\ZecMiner.ps1
+    }
+
 }

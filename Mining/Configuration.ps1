@@ -27,6 +27,7 @@ while ($Completed -ne "OK") {
     Write-host [1] "BTC Pool - BitCoin "-ForegroundColor yellow -BackgroundColor Black
     Write-host [2] "LTC Pool - LiteCoin "-ForegroundColor red -BackgroundColor Black
     Write-host [3] "XMR Pool - Monero " -ForegroundColor magenta -BackgroundColor Black
+    Write-host [4] "ETH Pool - Etherium " -ForegroundColor magenta -BackgroundColor Black
     Write-host [G] "Generate config File" -ForegroundColor Blue -BackgroundColor Black
     Write-Host [Q] "Quit" -ForegroundColor magenta -BackgroundColor Black
     write-host ""
@@ -176,12 +177,56 @@ if ($Crypto -eq "3") {
     }
 }
 
+if ($Crypto -eq "4") { 
+    $Cryptoini = "KO"
+    while ($Cryptoini -ne "Done") {
+
+    Write-host "ETH Pool Selector"-ForegroundColor yellow -BackgroundColor Black
+    Write-Host [1] " NanoPool : eth.nanopool.org:9999"
+    Write-Host [R] " - No Change" -ForegroundColor magenta -BackgroundColor Black
+    write-host ""
+
+    $Pool = Read-Host "Your choice ? "
+
+    if ($Pool -eq "1") {
+        write-host ""
+        $ETHWallet = Read-host "Your ETH Wallet "
+        $RigName = Read-host "Your Rig Name "
+        $Mail = Read-host "Your mail "
+        remove-item ".\Config\ETH_config.ini"
+        New-Item -Path ".\Config\" -Name "ETH_config.ini" -ItemType file -Force
+        ADD-Content -Path ".\Config\ETH_config.ini" -Value "wallet=$ETHWallet"
+        ADD-Content -Path ".\Config\ETH_config.ini" -Value "algorithm=Ethash"
+        ADD-Content -Path ".\Config\ETH_config.ini" -Value "coin=ETH"
+        ADD-Content -Path ".\Config\ETH_config.ini" -Value "rigName=$RigName"
+        ADD-Content -Path ".\Config\ETH_config.ini" -Value "email=$Mail"
+        ADD-Content -Path ".\Config\ETH_config.ini" -Value "pool1 = eth-eu1.nanopool.org:9999"
+        ADD-Content -Path ".\Config\ETH_config.ini" -Value "pool2 = eth-eu2.nanopool.org:9999"
+        ADD-Content -Path ".\Config\ETH_config.ini" -Value "pool3 = eth-us-east1.nanopool.org:9999"
+        ADD-Content -Path ".\Config\ETH_config.ini" -Value "pool4 = eth-us-west1.nanopool.org:9999"
+        ADD-Content -Path ".\Config\ETH_config.ini" -Value "pool5 = eth-asia1.nanopool.org:9999"
+        $Cryptoini = "Done"
+        $Pool = "Set for ETH Mining - See ETH-Config.ini"    
+        }
+
+    if ($Pool -eq "C") {
+            $Pool = read-host "Your Custom Pool "
+            $Cryptoini = "Done"
+            $Pool = "Set for ETH Mining - See ETH-Config.ini"}
+
+    if ($Pool -eq $null) {
+        $Cryptoini = "Done"
+        $Pool = "Set for ETH Mining - See ETH-Config.ini"}
+   
+    }
+}
+
 $PoolMining = $PoolMining.Replace("$PoolMining", "$Pool")
 
 ### Config USER Acces ###
     write-host ""
     write-host "USER POOL CONFIGURATION"-ForegroundColor green -BackgroundColor Black
-    if ($Pool -eq "Set for Monero Mining - See XMR-Config.ini"){
+    if ($Pool -eq "Set for ETH Mining - See ETH-Config.ini"){
         write-host "$pool"-ForegroundColor magenta -BackgroundColor Black
         $PUser = $Pool
         $PoolUser = $PoolUser.Replace("$PoolUser", "$PUser")

@@ -1,19 +1,15 @@
-### Systeme Check ###
-
 ### By Nox Prime for Gameoverblog.fr ###
+### If you want to Help me with coffee/Vodka ... or Both :) ?: 
 
 ### Vodka or Coffee Donation ###
 ### LTC : LP9QYLNG7HEXFPawhoPJqJizFvXkyeuRUb
 ### BTC : 3NZk6iirCUGe8WPtXTUWGZudni2CC2BjCu
 ### XMR : 4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CWEwrVU97D5U8RrdECm
-### Found News on 
-## Site : https://Gameoverblog.fr
-## GITHUB : https://github.com/Nonoxprime/Bro
-### Thanks for your help, enjoy this script
 
-### Need to run the First script
+<# Why this File ? 
+Check System
+#>
 
-#### Check Files and Folder ####
 clear-Host
 
 ### Date ###
@@ -21,12 +17,6 @@ $date = Get-Date -Format g
 
 if ($fail -ne "n"){Write-Host "Check system"  -ForegroundColor green -BackgroundColor Black}
 else {Write-Host "Check system"  -ForegroundColor Magenta -BackgroundColor Black}
-
-### Creation Of Full Config File
-$Version = Get-Content -Path .\Config\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 1
-$PoolMining = Get-Content -Path .\Config\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 3
-$PoolUser = Get-Content -Path .\Config\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 5
-$PoolPass = Get-Content -Path .\Config\Userconfig.conf | where { $_ -ne "$null" } | Select-Object -Index 7
 
 ### Hostname
 if ($PowerShellVersion -ge 6) {
@@ -92,6 +82,14 @@ else {
     $Nanominer = "Nanominer : Ready to mine Monero / Etherium"
 }
 
+### Check ZecMiner Zcash ###
+if (-not (Test-Path ".\Soft\ZecMiner0.3.4b\miner.exe")) {
+    $Nanominer = "Zecminer : Missing Folder."
+}
+else {
+    $Nanominer = "Zecminer : Ready to mine Monero / Etherium"
+}
+
 
 ### Insert Info into Hostname.log ###
 $Local= ".\Config\$hostname.log"
@@ -111,6 +109,7 @@ ADD-content -path $Local -value "$CPUMiner"
 ADD-content -path $Local -value "$CGMiner"
 ADD-content -path $Local -value "$Moon"
 ADD-content -path $Local -value "$Nanominer"
+ADD-content -path $Local -value "$Zec"
 ADD-content -path $Local -value "-----------------------------------------------"
 #########
 
@@ -140,6 +139,9 @@ Else {Write-Host "$Moon" -foregroundcolor Green -backgroundcolor black}
 
 if ($Nanominer -eq "Nanominer : Missing Folder.") {Write-Host "$Nanominer" -foregroundcolor Red -backgroundcolor black}
 Else {Write-Host "$Nanominer" -foregroundcolor Green -backgroundcolor black}
+
+if ($Zec -eq "Nanominer : Missing Folder.") {Write-Host "$Zec" -foregroundcolor Red -backgroundcolor black}
+Else {Write-Host "$Zec" -foregroundcolor Green -backgroundcolor black}
 
 write-host "----------------------------------------------------------------------"
 write.exe .\Config\$hostname.log
