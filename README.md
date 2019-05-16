@@ -16,6 +16,10 @@ HOW I CAN RUN THIS SCRIPT
 
 Update
 
+16/05/2019 – 1.0516.19
+•	AutoUpdate available
+•	Zip Updated
+
 15/05/2019 – 1.0515.19
 •	Update Scripting
 •	Download Script Reworked
